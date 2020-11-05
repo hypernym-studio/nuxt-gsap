@@ -38,8 +38,6 @@ export default {
 
 ## Examples
 
-`GSAP` is a very fast and powerful javascript animation library. For example, you can use it in nuxt `global page transitions` with `javascript hooks`
-
 **Nuxt global page transitions**
 
 ```js
@@ -124,9 +122,6 @@ export default {
       expoScaleEase: false,
       roughEase: false,
       slowMo: false,
-      customEase: false,
-      customBounce: false,
-      customWiggle: false
     }
   }
 }
@@ -486,98 +481,11 @@ gsap.registerPlugin(SlowMo)
 
 [More info](https://greensock.com/docs/v3/Eases/SlowMo)
 
-#### `customEase`
-
-- Default: `false`
-
-> Available on `client-side` only
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    extraEases: {
-      customEase: true
-    }
-  }
-}
-```
-
-```js
-// Usage
-
-const gsap = this.$gsap
-const CustomEase = this.$CustomEase
-
-gsap.registerPlugin(CustomEase)
-```
-
-[More info](https://greensock.com/docs/v3/Eases/CustomEase)
-
-#### `customBounce`
-
-- Default: `false`
-
-> Available on `client-side` only
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    extraEases: {
-      customBounce: true
-    }
-  }
-}
-```
-
-```js
-// Usage
-
-const gsap = this.$gsap
-const CustomBounce = this.$CustomBounce
-
-gsap.registerPlugin(CustomBounce)
-```
-
-[More info](https://greensock.com/docs/v3/Eases/CustomBounce)
-
-#### `customWiggle`
-
-- Default: `false`
-
-> Available on `client-side` only
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    extraEases: {
-      customWiggle: true
-    }
-  }
-}
-```
-
-```js
-// Usage
-
-const gsap = this.$gsap
-const CustomWiggle = this.$CustomWiggle
-
-gsap.registerPlugin(CustomWiggle)
-```
-
-[More info](https://greensock.com/docs/v3/Eases/CustomWiggle)
-
 ## License
 
 **GSAP**
 
-I highly recommend checking the official GSAP documents for more information on licenses and similar legal topics.
+I recommend checking the official GSAP documents for more information on licenses.
 
 [GSAP License](https://github.com/greensock/GSAP#license)
 
