@@ -99,6 +99,35 @@ export default {
 }
 ```
 
+**Multiple plugins usage example**
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    extraPlugins: {
+      scrollTo: true,
+      scrollTrigger: true
+    },
+    extraEases: {
+      expoScaleEase: true
+    }
+  }
+}
+```
+
+```js
+// Usage
+
+const gsap = this.$gsap
+const ExpoScaleEase = this.$ExpoScaleEase
+const ScrollToPlugin = this.$ScrollToPlugin
+const ScrollTrigger = this.$ScrollTrigger
+
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, ExpoScaleEase)
+```
+
 ## Options
 
 **All default options**
@@ -485,9 +514,9 @@ gsap.registerPlugin(SlowMo)
 
 **GSAP**
 
-I recommend checking the official GSAP documents for more information on licenses.
+For more information, check the official GSAP site.
 
-[GSAP License](https://github.com/greensock/GSAP#license)
+[GSAP License](https://greensock.com/licensing/)
 
 Copyright (c) GreenSock
 
