@@ -130,7 +130,7 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, ExpoScaleEase)
 
 ## Options
 
-**All default options**
+**Default options**
 
 ```js
 // nuxt.config.js
@@ -182,7 +182,6 @@ this.$gsap
 this.$gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 
 // or
-
 const gsap = this.$gsap
 gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 ```
