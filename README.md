@@ -12,7 +12,6 @@ GSAP module for Nuxt.js
 - Allows you to easily set options through the module
 - Provides a solution for building `high-performance` animations that work in `every` major browser
 - Includes `zero-config` setup ready to go
-- [and much more](https://greensock.com/gsap/) 🔥
 
 ## Setup
 
@@ -37,6 +36,10 @@ export default {
 ```
 
 ## Examples
+
+💻 Here are some code examples
+
+- [Page Transitions](https://codesandbox.io/s/example-nuxt-gsap-module-basic-bqi7c)
 
 **Nuxt global page transitions**
 
