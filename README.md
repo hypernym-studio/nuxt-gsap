@@ -9,11 +9,11 @@ GSAP module for Nuxt.js
 ## Features
 
 - Helps you integrate `GSAP` javascript animation library
-- Allows you to easily set options through the module
-- Provides a solution for building `high-performance` animations that work in every major browser
+- Allows you to easily animate elements via custom `v-gsap` directive 🔥
+- Provides a solution for global use via `this.$gsap`
 - `Zero-config` setup ready to go 🚀
 
-## Setup
+## Quick Start
 
 1. Add `nuxt-gsap-module` dependency to your project
 
@@ -42,6 +42,77 @@ That's it! Start developing your app ✨
 💻 Here are some code examples
 
 - [Page Transitions](https://codesandbox.io/s/example-nuxt-gsap-module-basic-bqi7c)
+
+**Custom modifier: `v-gsap.to`**
+
+```html
+<!-- index.vue -->
+
+<template>
+  <h1
+    v-gsap.to="{
+      rotation: 360,
+      x: 150,
+      duration: 2
+    }"
+  >
+    NUXT GSAP
+  </h1>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.to)
+
+**Custom modifier: `v-gsap.from`**
+
+```html
+<!-- index.vue -->
+
+<template>
+  <span
+    v-gsap.from="{
+      opacity: 0, 
+      x: -200, 
+      duration: 1
+    }"
+  >
+    NUXT GSAP
+  </span>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.from)
+
+**Custom modifier: `v-gsap.fromTo`**
+
+```html
+<!-- index.vue -->
+
+<template>
+  <p
+    v-gsap.fromTo="[
+      { opacity: 0, y: -350 },
+      { opacity: 1, y: 0, duration: 3 }
+    ]"
+  >
+    NUXT GSAP
+  </p>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.fromTo)
+
+**Custom modifier: `v-gsap.set`**
+
+```html
+<!-- index.vue -->
+
+<template>
+  <p v-gsap.set="{ x: 100, y: 50 }">NUXT GSAP</p>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.set)
 
 **Simple box rotation**
 
@@ -169,8 +240,6 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, ExpoScaleEase)
 
 ✅ GSAP's core is enabled by default so there is no need for additional configuration.
 
-> Available on both `client-side` and `server-side`
-
 ```js
 // nuxt.config.js
 
@@ -179,16 +248,33 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, ExpoScaleEase)
 }
 ```
 
+**Available globally**
+
 ```js
 // Access GSAP by using
 this.$gsap
 
-// Rotate and move elements with a class of "box" over the course of 1 second
-this.$gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
-
 // or
 const gsap = this.$gsap
 gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
+```
+
+**Use in templates**
+
+```html
+<div v-gsap.to="{ /* ... */ }"></div>
+```
+
+```html
+<div v-gsap.from="{ /* ... */ }"></div>
+```
+
+```html
+<div v-gsap.fromTo="{ /* ... */ }"></div>
+```
+
+```html
+<div v-gsap.set="{ /* ... */ }"></div>
 ```
 
 ### Extra Plugins
@@ -196,8 +282,6 @@ gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 #### `cssRule`
 
 - Default: `false`
-
-> Available on `client-side` only
 
 ```js
 // nuxt.config.js
@@ -226,8 +310,6 @@ gsap.registerPlugin(CSSRulePlugin)
 
 - Default: `false`
 
-> Available on `client-side` only
-
 ```js
 // nuxt.config.js
 
@@ -254,8 +336,6 @@ gsap.registerPlugin(Draggable)
 #### `easel`
 
 - Default: `false`
-
-> Available on `client-side` only
 
 ```js
 // nuxt.config.js
@@ -284,8 +364,6 @@ gsap.registerPlugin(EaselPlugin)
 
 - Default: `false`
 
-> Available on `client-side` only
-
 ```js
 // nuxt.config.js
 
@@ -312,8 +390,6 @@ gsap.registerPlugin(MotionPathPlugin)
 #### `pixi`
 
 - Default: `false`
-
-> Available on `client-side` only
 
 ```js
 // nuxt.config.js
@@ -342,8 +418,6 @@ gsap.registerPlugin(PixiPlugin)
 
 - Default: `false`
 
-> Available on `client-side` only
-
 ```js
 // nuxt.config.js
 
@@ -371,8 +445,6 @@ gsap.registerPlugin(TextPlugin)
 
 - Default: `false`
 
-> Available on `client-side` only
-
 ```js
 // nuxt.config.js
 
@@ -399,8 +471,6 @@ gsap.registerPlugin(ScrollToPlugin)
 #### `scrollTrigger`
 
 - Default: `false`
-
-> Available on `client-side` only
 
 ```js
 // nuxt.config.js
@@ -431,8 +501,6 @@ gsap.registerPlugin(ScrollTrigger)
 
 - Default: `false`
 
-> Available on `client-side` only
-
 ```js
 // nuxt.config.js
 
@@ -460,8 +528,6 @@ gsap.registerPlugin(ExpoScaleEase)
 
 - Default: `false`
 
-> Available on `client-side` only
-
 ```js
 // nuxt.config.js
 
@@ -488,8 +554,6 @@ gsap.registerPlugin(RoughEase)
 #### `slowMo`
 
 - Default: `false`
-
-> Available on `client-side` only
 
 ```js
 // nuxt.config.js
