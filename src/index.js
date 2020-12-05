@@ -12,7 +12,7 @@ export default function gsapModule(moduleOptions) {
   }
 
   addPlugin({
-    src: resolve(__dirname, 'plugin.js'),
+    src: resolve(__dirname, '../templates/plugin.js'),
     fileName: 'gsapModule.js',
     options
   })

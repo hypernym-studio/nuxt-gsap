@@ -9,7 +9,7 @@
       "name": "Ivo Dolenc <ivodolenc@gmail.com>"
     }
   ],
-  "main": "lib/module.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ivodolenc/nuxt-gsap-module.git"
@@ -18,11 +18,12 @@
     "url": "https://github.com/ivodolenc/nuxt-gsap-module/issues"
   },
   "files": [
-    "lib"
+    "src",
+    "templates"
   ],
   "keywords": [
-    "nuxtjs",
     "nuxt",
+    "nuxtjs",
     "nuxt-module",
     "gsap",
     "gsap-module",
@@ -35,10 +36,10 @@
   "scripts": {
     "release": "standard-version && git push --follow-tags && npm publish",
     "lint:eslint": "eslint --ext .js .",
-    "lint:all:eslint": "npm run lint:eslint --fix"
+    "lint:all:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
-    "gsap": "latest"
+    "gsap": "^3.5.1"
   },
   "devDependencies": {
     "@babel/core": "latest",

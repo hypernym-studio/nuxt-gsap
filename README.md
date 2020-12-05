@@ -10,15 +10,15 @@ GSAP module for Nuxt.js
 
 - Helps you integrate `GSAP` javascript animation library
 - Allows you to easily set options through the module
-- Provides a solution for building `high-performance` animations that work in `every` major browser
-- Includes `zero-config` setup ready to go
+- Provides a solution for building `high-performance` animations that work in every major browser
+- `Zero-config` setup ready to go 🚀
 
 ## Setup
 
 1. Add `nuxt-gsap-module` dependency to your project
 
 ```bash
-$ npm install --save-dev nuxt-gsap-module
+$ npm install --save-dev nuxt-gsap-module # or yarn add --dev nuxt-gsap-module
 ```
 
 2. Add `nuxt-gsap-module` to the `buildModules` section of `nuxt.config.js`
@@ -35,11 +35,32 @@ export default {
 }
 ```
 
+That's it! Start developing your app ✨
+
 ## Examples
 
 💻 Here are some code examples
 
 - [Page Transitions](https://codesandbox.io/s/example-nuxt-gsap-module-basic-bqi7c)
+
+**Simple box rotation**
+
+```js
+// index.vue
+
+{
+  mounted() {
+    this.boxRotation()
+  },
+
+  methods: {
+    boxRotation() {
+      const gsap = this.$gsap
+      gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
+    }
+  }
+}
+```
 
 **Nuxt global page transitions**
 
@@ -78,25 +99,6 @@ export default {
         ease: 'power2.inOut',
         onComplete: done
       })
-    }
-  }
-}
-```
-
-**Simple box rotation**
-
-```js
-// index.vue
-
-{
-  mounted() {
-    this.boxRotation()
-  },
-
-  methods: {
-    boxRotation() {
-      const gsap = this.$gsap
-      gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
     }
   }
 }
@@ -165,7 +167,7 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, ExpoScaleEase)
 
 - Default: `true`
 
-GSAP's core is enabled by default so there is no need for additional configuration.
+✅ GSAP's core is enabled by default so there is no need for additional configuration.
 
 > Available on both `client-side` and `server-side`
 

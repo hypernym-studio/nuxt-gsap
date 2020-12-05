@@ -2,4 +2,9 @@ node_modules
 dist
 .nuxt
 coverage
-lib/plugin.js
+*.log*
+.DS_Store
+.code
+*.iml
+package-lock.json
+templates/*
