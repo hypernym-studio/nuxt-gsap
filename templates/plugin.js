@@ -1,67 +1,87 @@
+import Vue from 'vue'
 import { gsap } from 'gsap'
 
-export default (context, inject) => {
-  inject('gsap', gsap)
+Vue.directive('gsap', (el, binding) => {
+  const _options = { ...binding.value }
+  const modifiers = binding.modifiers
 
-  <% if (
-    Object.keys(options.extraPlugins).length ||
-    Object.keys(options.extraEases).length
-    ) { %>
+  if (modifiers.to) {
+    gsap.to(el, _options)
+  }
+
+  if (modifiers.from) {
+    gsap.from(el, _options)
+  }
+
+  if (modifiers.fromTo) {
+    gsap.fromTo(el, { ...binding.value[0] }, { ...binding.value[1] })
+  }
+
+  if (modifiers.set) {
+    gsap.set(el, _options)
+  }
+})
+
+Vue.prototype.$gsap = gsap
+
+<% if (
+  Object.keys(options.extraPlugins).length ||
+  Object.keys(options.extraEases).length
+  ) { %>
     if (process.client) {
       <% if (options.extraPlugins.cssRule) { %>
         const { CSSRulePlugin } = require('gsap/CSSRulePlugin')
-        inject('CSSRulePlugin', CSSRulePlugin)
+        Vue.prototype.$CSSRulePlugin = CSSRulePlugin
       <% } %>
 
       <% if (options.extraPlugins.draggable) { %>
         const { Draggable } = require('gsap/Draggable')
-        inject('Draggable', Draggable)
+        Vue.prototype.$Draggable = Draggable
       <% } %>
 
       <% if (options.extraPlugins.easel) { %>
         const { EaselPlugin } = require('gsap/EaselPlugin')
-        inject('EaselPlugin', EaselPlugin)
+        Vue.prototype.$EaselPlugin = EaselPlugin
       <% } %>
 
       <% if (options.extraPlugins.motionPath) { %>
         const { MotionPathPlugin } = require('gsap/MotionPathPlugin')
-        inject('MotionPathPlugin', MotionPathPlugin)
+        Vue.prototype.$MotionPathPlugin = MotionPathPlugin
       <% } %>
 
       <% if (options.extraPlugins.pixi) { %>
         const { PixiPlugin } = require('gsap/PixiPlugin')
-        inject('PixiPlugin', PixiPlugin)
+        Vue.prototype.$PixiPlugin = PixiPlugin
       <% } %>
 
       <% if (options.extraPlugins.text) { %>
         const { TextPlugin } = require('gsap/TextPlugin')
-        inject('TextPlugin', TextPlugin)
+        Vue.prototype.$TextPlugin = TextPlugin
       <% } %>
 
       <% if (options.extraPlugins.scrollTo) { %>
         const { ScrollToPlugin } = require('gsap/ScrollToPlugin')
-        inject('ScrollToPlugin', ScrollToPlugin)
+        Vue.prototype.$ScrollToPlugin = ScrollToPlugin
       <% } %>
 
       <% if (options.extraPlugins.scrollTrigger) { %>
         const { ScrollTrigger } = require('gsap/ScrollTrigger')
-        inject('ScrollTrigger', ScrollTrigger)
+        Vue.prototype.$ScrollTrigger = ScrollTrigger
       <% } %>
 
       <% if (options.extraEases.expoScaleEase) { %>
         const { ExpoScaleEase } = require('gsap/EasePack')
-        inject('ExpoScaleEase', ExpoScaleEase)
+        Vue.prototype.$ExpoScaleEase = ExpoScaleEase
       <% } %>
       
       <% if (options.extraEases.roughEase) { %>
         const { RoughEase } = require('gsap/EasePack')
-        inject('RoughEase', RoughEase)
+        Vue.prototype.$RoughEase = RoughEase
       <% } %>
 
       <% if (options.extraEases.slowMo) { %>
         const { SlowMo } = require('gsap/EasePack')
-        inject('SlowMo', SlowMo)
+        Vue.prototype.$SlowMo = SlowMo
       <% } %>
     }
-  <% } %>
-}
+<% } %>
