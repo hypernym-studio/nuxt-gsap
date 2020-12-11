@@ -232,9 +232,9 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, ExpoScaleEase)
 }
 ```
 
-### GSAP's core
+## GSAP's core
 
-#### `gsap`
+### `gsap`
 
 - Default: `true`
 
@@ -270,16 +270,16 @@ gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 ```
 
 ```html
-<div v-gsap.fromTo="{ /* ... */ }"></div>
+<div v-gsap.fromTo="[{ /* ... */ }, { /* ... */ }]"></div>
 ```
 
 ```html
 <div v-gsap.set="{ /* ... */ }"></div>
 ```
 
-### Extra Plugins
+## Extra Plugins
 
-#### `cssRule`
+### `cssRule`
 
 - Default: `false`
 
@@ -306,7 +306,7 @@ gsap.registerPlugin(CSSRulePlugin)
 
 [More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
 
-#### `draggable`
+### `draggable`
 
 - Default: `false`
 
@@ -333,7 +333,7 @@ gsap.registerPlugin(Draggable)
 
 [More info](https://greensock.com/docs/v3/Plugins/Draggable)
 
-#### `easel`
+### `easel`
 
 - Default: `false`
 
@@ -360,7 +360,7 @@ gsap.registerPlugin(EaselPlugin)
 
 [More info](https://greensock.com/docs/v3/Plugins/EaselPlugin)
 
-#### `motionPath`
+### `motionPath`
 
 - Default: `false`
 
@@ -387,7 +387,7 @@ gsap.registerPlugin(MotionPathPlugin)
 
 [More info](https://greensock.com/docs/v3/Plugins/MotionPathPlugin)
 
-#### `pixi`
+### `pixi`
 
 - Default: `false`
 
@@ -414,7 +414,7 @@ gsap.registerPlugin(PixiPlugin)
 
 [More info](https://greensock.com/docs/v3/Plugins/PixiPlugin)
 
-#### `text`
+### `text`
 
 - Default: `false`
 
@@ -441,7 +441,7 @@ gsap.registerPlugin(TextPlugin)
 
 [More info](https://greensock.com/docs/v3/Plugins/TextPlugin)
 
-#### `scrollTo`
+### `scrollTo`
 
 - Default: `false`
 
@@ -468,7 +468,7 @@ gsap.registerPlugin(ScrollToPlugin)
 
 [More info](https://greensock.com/docs/v3/Plugins/ScrollToPlugin)
 
-#### `scrollTrigger`
+### `scrollTrigger`
 
 - Default: `false`
 
@@ -495,9 +495,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 [More info](https://greensock.com/docs/v3/Plugins/ScrollTrigger)
 
-### Extra eases
+## Extra eases
 
-#### `expoScaleEase`
+### `expoScaleEase`
 
 - Default: `false`
 
@@ -524,7 +524,7 @@ gsap.registerPlugin(ExpoScaleEase)
 
 [More info](https://greensock.com/docs/v3/Eases/ExpoScaleEase)
 
-#### `roughEase`
+### `roughEase`
 
 - Default: `false`
 
@@ -551,7 +551,7 @@ gsap.registerPlugin(RoughEase)
 
 [More info](https://greensock.com/docs/v3/Eases/RoughEase)
 
-#### `slowMo`
+### `slowMo`
 
 - Default: `false`
 
