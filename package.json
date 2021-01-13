@@ -2,14 +2,14 @@
   "name": "nuxt-gsap-module",
   "version": "1.1.0",
   "description": "GSAP module for Nuxt.js",
-  "license": "MIT",
   "author": "Ivo Dolenc",
+  "license": "MIT",
   "contributors": [
     {
       "name": "Ivo Dolenc <ivodolenc@gmail.com>"
     }
   ],
-  "main": "src/index.js",
+  "homepage": "https://github.com/ivodolenc/nuxt-gsap-module#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ivodolenc/nuxt-gsap-module.git"
@@ -17,6 +17,7 @@
   "bugs": {
     "url": "https://github.com/ivodolenc/nuxt-gsap-module/issues"
   },
+  "main": "src/index.js",
   "files": [
     "src",
     "templates"
@@ -25,10 +26,11 @@
     "nuxt",
     "nuxtjs",
     "nuxt-module",
+    "nuxt-gsap",
     "gsap",
+    "nuxt-gsap-module",
     "gsap-module",
     "greensock",
-    "nuxt-gsap-module",
     "nuxt-greensock",
     "nuxt-animations",
     "javascript-animations"
@@ -39,7 +41,7 @@
     "lint:all:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
-    "gsap": "^3.5.1"
+    "gsap": "^3.6.0"
   },
   "devDependencies": {
     "@babel/core": "latest",
