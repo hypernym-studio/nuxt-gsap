@@ -39,11 +39,25 @@ That's it! Start developing your app ✨
 
 ## Examples
 
-💻 Here are some code examples
+Here are some code examples
 
+- [Basic](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/basic)
+- [Custom Directive](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/custom-directive)
 - [Page Transitions](https://codesandbox.io/s/example-nuxt-gsap-module-basic-bqi7c)
 
-**Custom modifier: `v-gsap.to`**
+### Custom modifier: `v-gsap.set`
+
+```html
+<!-- index.vue -->
+
+<template>
+  <p v-gsap.set="{ x: 100, y: 50 }">NUXT GSAP</p>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.set)
+
+### Custom modifier: `v-gsap.to`
 
 ```html
 <!-- index.vue -->
@@ -63,7 +77,7 @@ That's it! Start developing your app ✨
 
 [More info](https://greensock.com/docs/v3/GSAP/gsap.to)
 
-**Custom modifier: `v-gsap.from`**
+### Custom modifier: `v-gsap.from`
 
 ```html
 <!-- index.vue -->
@@ -83,7 +97,7 @@ That's it! Start developing your app ✨
 
 [More info](https://greensock.com/docs/v3/GSAP/gsap.from)
 
-**Custom modifier: `v-gsap.fromTo`**
+### Custom modifier: `v-gsap.fromTo`
 
 ```html
 <!-- index.vue -->
@@ -102,19 +116,7 @@ That's it! Start developing your app ✨
 
 [More info](https://greensock.com/docs/v3/GSAP/gsap.fromTo)
 
-**Custom modifier: `v-gsap.set`**
-
-```html
-<!-- index.vue -->
-
-<template>
-  <p v-gsap.set="{ x: 100, y: 50 }">NUXT GSAP</p>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.set)
-
-**Simple box rotation**
+### Simple box rotation
 
 ```js
 // index.vue
@@ -133,7 +135,7 @@ That's it! Start developing your app ✨
 }
 ```
 
-**Nuxt global page transitions**
+### Nuxt global page transitions
 
 ```js
 // nuxt.config.js
@@ -175,7 +177,7 @@ That's it! Start developing your app ✨
 }
 ```
 
-**Multiple plugins usage example**
+### Multiple plugins usage example
 
 ```js
 // nuxt.config.js
