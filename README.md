@@ -11,6 +11,7 @@ GSAP module for Nuxt.js
 - Helps you integrate `GSAP` javascript animation library
 - Allows you to easily animate elements via custom `v-gsap` directive 🔥
 - Provides a solution for global use via `this.$gsap`
+- Automatically registers plugins after activation
 - `Zero-config` setup ready to go 🚀
 
 ## Quick Start
@@ -44,6 +45,8 @@ Here are some code examples
 - [Basic](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/basic)
 - [Custom Directive](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/custom-directive)
 - [Page Transitions](https://codesandbox.io/s/example-nuxt-gsap-module-basic-bqi7c)
+- [Staggering](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/staggering)
+- [Animate On Scroll](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/animate-on-scroll)
 
 ### Custom modifier: `v-gsap.set`
 
@@ -179,12 +182,18 @@ Here are some code examples
 
 ### Multiple plugins usage example
 
+✅ The module automatically registers plugins globally (after plugin activation in the settings), so you won’t have to worry about it (applies to all plugins).
+
 ```js
 // nuxt.config.js
 
 {
   gsap: {
     extraPlugins: {
+      /**
+       * When you enable them, plugins are
+       * automatically registered and available globally
+       */
       scrollTo: true,
       scrollTrigger: true
     },
@@ -198,12 +207,28 @@ Here are some code examples
 ```js
 // Usage
 
-const gsap = this.$gsap
-const ExpoScaleEase = this.$ExpoScaleEase
-const ScrollToPlugin = this.$ScrollToPlugin
-const ScrollTrigger = this.$ScrollTrigger
+export default {
+  mounted() {
+    this.animateOnScroll()
+  },
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, ExpoScaleEase)
+  methods: {
+    animateOnScroll() {
+      this.$gsap.to(window, { duration: 2, scrollTo: 1000 })
+
+      this.$gsap.to('.box', {
+        x: 500,
+        ease: 'Power1.easeInOut',
+        scrollTrigger: {
+          trigger: '.content',
+          pin: true,
+          end: 'bottom',
+          scrub: true
+        }
+      })
+    }
+  }
+}
 ```
 
 ## Options
@@ -298,12 +323,8 @@ gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const CSSRulePlugin = this.$CSSRulePlugin
-
-gsap.registerPlugin(CSSRulePlugin)
+// Access the plugin by using
+this.$CSSRulePlugin
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
@@ -325,12 +346,8 @@ gsap.registerPlugin(CSSRulePlugin)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const Draggable = this.$Draggable
-
-gsap.registerPlugin(Draggable)
+// Access the plugin by using
+this.$Draggable
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/Draggable)
@@ -352,12 +369,8 @@ gsap.registerPlugin(Draggable)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const EaselPlugin = this.$EaselPlugin
-
-gsap.registerPlugin(EaselPlugin)
+// Access the plugin by using
+this.$EaselPlugin
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/EaselPlugin)
@@ -379,12 +392,8 @@ gsap.registerPlugin(EaselPlugin)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const MotionPathPlugin = this.$MotionPathPlugin
-
-gsap.registerPlugin(MotionPathPlugin)
+// Access the plugin by using
+this.$MotionPathPlugin
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/MotionPathPlugin)
@@ -406,12 +415,8 @@ gsap.registerPlugin(MotionPathPlugin)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const PixiPlugin = this.$PixiPlugin
-
-gsap.registerPlugin(PixiPlugin)
+// Access the plugin by using
+this.$PixiPlugin
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/PixiPlugin)
@@ -433,12 +438,8 @@ gsap.registerPlugin(PixiPlugin)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const TextPlugin = this.$TextPlugin
-
-gsap.registerPlugin(TextPlugin)
+// Access the plugin by using
+this.$TextPlugin
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/TextPlugin)
@@ -460,12 +461,8 @@ gsap.registerPlugin(TextPlugin)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const ScrollToPlugin = this.$ScrollToPlugin
-
-gsap.registerPlugin(ScrollToPlugin)
+// Access the plugin by using
+this.$ScrollToPlugin
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/ScrollToPlugin)
@@ -487,12 +484,8 @@ gsap.registerPlugin(ScrollToPlugin)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const ScrollTrigger = this.$ScrollTrigger
-
-gsap.registerPlugin(ScrollTrigger)
+// Access the plugin by using
+this.$ScrollTrigger
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/ScrollTrigger)
@@ -516,12 +509,8 @@ gsap.registerPlugin(ScrollTrigger)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const ExpoScaleEase = this.$ExpoScaleEase
-
-gsap.registerPlugin(ExpoScaleEase)
+// Access the plugin by using
+this.$ExpoScaleEase
 ```
 
 [More info](https://greensock.com/docs/v3/Eases/ExpoScaleEase)
@@ -543,12 +532,8 @@ gsap.registerPlugin(ExpoScaleEase)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const RoughEase = this.$RoughEase
-
-gsap.registerPlugin(RoughEase)
+// Access the plugin by using
+this.$RoughEase
 ```
 
 [More info](https://greensock.com/docs/v3/Eases/RoughEase)
@@ -570,12 +555,8 @@ gsap.registerPlugin(RoughEase)
 ```
 
 ```js
-// Usage
-
-const gsap = this.$gsap
-const SlowMo = this.$SlowMo
-
-gsap.registerPlugin(SlowMo)
+// Access the plugin by using
+this.$SlowMo
 ```
 
 [More info](https://greensock.com/docs/v3/Eases/SlowMo)
