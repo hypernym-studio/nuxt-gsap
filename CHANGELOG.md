@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.1.1...v1.2.0) (2021-02-03)
+
+
+### Features
+
+* register plugin globally after activation ([cd56043](https://github.com/ivodolenc/nuxt-gsap-module/commit/cd56043a1d2e15cefebeafd2c2d308949df594a8))
+
 ### [1.1.1](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.1.0...v1.1.1) (2021-01-13)
 
 ## [1.1.0](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.0.2...v1.1.0) (2020-12-05)
