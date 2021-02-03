@@ -83,5 +83,19 @@ Vue.prototype.$gsap = gsap
         const { SlowMo } = require('gsap/EasePack')
         Vue.prototype.$SlowMo = SlowMo
       <% } %>
+
+        gsap.registerPlugin(
+          <%= options.extraPlugins.cssRule && 'CSSRulePlugin,' %> 
+          <%= options.extraPlugins.draggable && 'Draggable,' %> 
+          <%= options.extraPlugins.easel && 'EaselPlugin,' %> 
+          <%= options.extraPlugins.motionPath && 'MotionPathPlugin,' %> 
+          <%= options.extraPlugins.pixi && 'PixiPlugin,' %> 
+          <%= options.extraPlugins.text && 'TextPlugin,' %> 
+          <%= options.extraPlugins.scrollTo && 'ScrollToPlugin,' %> 
+          <%= options.extraPlugins.scrollTrigger && 'ScrollTrigger,' %> 
+          <%= options.extraEases.expoScaleEase && 'ExpoScaleEase,' %> 
+          <%= options.extraEases.roughEase && 'RoughEase,' %> 
+          <%= options.extraEases.slowMo && 'SlowMo,' %>
+        )
     }
 <% } %>
