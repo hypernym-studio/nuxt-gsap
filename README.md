@@ -684,29 +684,6 @@ this.$DrawSVGPlugin
 this.$Flip
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/DrawSVGPlugin)
-
-### `flip`
-
-- Default: `false`
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    clubPlugins: {
-      flip: true
-    }
-  }
-}
-```
-
-```js
-// Access the plugin by using
-this.$Flip
-```
-
 [More info](https://greensock.com/docs/v3/Plugins/Flip)
 
 ### `gsDevTools`
