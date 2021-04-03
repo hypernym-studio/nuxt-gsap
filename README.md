@@ -12,6 +12,7 @@ GSAP module for Nuxt.js
 - Allows you to easily animate elements via custom `v-gsap` directive 🔥
 - Provides a solution for global use via `this.$gsap`
 - Automatically registers plugins after activation
+- Supports `Club GreenSock` premium plugins
 - `Zero-config` setup ready to go 🚀
 
 ## Quick Start
@@ -191,8 +192,8 @@ Here are some code examples
   gsap: {
     extraPlugins: {
       /**
-       * When you enable them, plugins are
-       * automatically registered and available globally
+       * After activation, plugins are automatically
+       * registered and available globally
        */
       scrollTo: true,
       scrollTrigger: true
@@ -560,6 +561,337 @@ this.$SlowMo
 ```
 
 [More info](https://greensock.com/docs/v3/Eases/SlowMo)
+
+## Club GreenSock
+
+`nuxt-gsap-module` supports Club GreenSock premium plugins. They can be easily activated via `module` settings, just like the free ones.
+
+**Installation**
+
+1. Follow the [official](https://youtu.be/30CivTsqqMY?t=87) instructions and install the `premium` plugins as usual.
+2. After installation, simply activate the desired plugins and that's it, you're ready to go!
+
+### `customEase`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      customEase: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$CustomEase
+```
+
+[More info](https://greensock.com/docs/v3/Eases/CustomEase)
+
+### `customBounce`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      customBounce: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$CustomBounce
+```
+
+[More info](https://greensock.com/docs/v3/Eases/CustomBounce)
+
+### `customWiggle`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      customWiggle: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$CustomWiggle
+```
+
+[More info](https://greensock.com/docs/v3/Eases/CustomWiggle)
+
+### `drawSVG`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      drawSVG: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$DrawSVGPlugin
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/DrawSVGPlugin)
+
+### `flip`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      flip: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$Flip
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/DrawSVGPlugin)
+
+### `flip`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      flip: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$Flip
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/Flip)
+
+### `gsDevTools`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      gsDevTools: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$GSDevTools
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/GSDevTools)
+
+### `inertia`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      inertia: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$InertiaPlugin
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/InertiaPlugin)
+
+### `morphSVG`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      morphSVG: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$MorphSVGPlugin
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/MorphSVGPlugin)
+
+### `motionPathHelper`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      motionPathHelper: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$MotionPathHelper
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/MotionPathHelper)
+
+### `physics2D`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      physics2D: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$Physics2DPlugin
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/Physics2DPlugin)
+
+### `physicsProps`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      physicsProps: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$PhysicsPropsPlugin
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/PhysicsPropsPlugin)
+
+### `scrambleText`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      scrambleText: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$ScrambleTextPlugin
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/ScrambleTextPlugin)
+
+### `splitText`
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    clubPlugins: {
+      splitText: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$SplitText
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/SplitText)
 
 ## License
 

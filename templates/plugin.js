@@ -94,5 +94,85 @@ Vue.prototype.$gsap = gsap
         Vue.prototype.$SlowMo = SlowMo
         gsap.registerPlugin(SlowMo)
       <% } %>
+
+      // Club Plugins
+
+      <% if (options.clubPlugins.customEase) { %>
+        const { CustomEase } = require('gsap/CustomEase')
+        Vue.prototype.$CustomEase = CustomEase
+        gsap.registerPlugin(CustomEase)
+      <% } %>
+
+      <% if (options.clubPlugins.customBounce) { %>
+        const { CustomBounce } = require('gsap/CustomBounce')
+        Vue.prototype.$CustomBounce = CustomBounce
+        gsap.registerPlugin(CustomBounce)
+      <% } %>
+
+      <% if (options.clubPlugins.customWiggle) { %>
+        const { CustomWiggle } = require('gsap/CustomWiggle')
+        Vue.prototype.$CustomWiggle = CustomWiggle
+        gsap.registerPlugin(CustomWiggle)
+      <% } %>
+
+      <% if (options.clubPlugins.drawSVG) { %>
+        const { DrawSVGPlugin } = require('gsap/DrawSVGPlugin')
+        Vue.prototype.$DrawSVGPlugin = DrawSVGPlugin
+        gsap.registerPlugin(DrawSVGPlugin)
+      <% } %>
+
+      <% if (options.clubPlugins.flip) { %>
+        const { Flip } = require('gsap/Flip')
+        Vue.prototype.$Flip = Flip
+        gsap.registerPlugin(Flip)
+      <% } %>
+
+      <% if (options.clubPlugins.gsDevTools) { %>
+        const { GSDevTools } = require('gsap/GSDevTools')
+        Vue.prototype.$GSDevTools = GSDevTools
+        gsap.registerPlugin(GSDevTools)
+      <% } %>
+
+      <% if (options.clubPlugins.inertia) { %>
+        const { InertiaPlugin } = require('gsap/InertiaPlugin')
+        Vue.prototype.$InertiaPlugin = InertiaPlugin
+        gsap.registerPlugin(InertiaPlugin)
+      <% } %>
+
+      <% if (options.clubPlugins.morphSVG) { %>
+        const { MorphSVGPlugin } = require('gsap/MorphSVGPlugin')
+        Vue.prototype.$MorphSVGPlugin = MorphSVGPlugin
+        gsap.registerPlugin(MorphSVGPlugin)
+      <% } %>
+
+      <% if (options.clubPlugins.motionPathHelper) { %>
+        const { MotionPathHelper } = require('gsap/MotionPathHelper')
+        Vue.prototype.$MotionPathHelper = MotionPathHelper
+        gsap.registerPlugin(MotionPathHelper)
+      <% } %>
+
+      <% if (options.clubPlugins.physics2D) { %>
+        const { Physics2DPlugin } = require('gsap/Physics2DPlugin')
+        Vue.prototype.$Physics2DPlugin = Physics2DPlugin
+        gsap.registerPlugin(Physics2DPlugin)
+      <% } %>
+
+      <% if (options.clubPlugins.physicsProps) { %>
+        const { PhysicsPropsPlugin } = require('gsap/PhysicsPropsPlugin')
+        Vue.prototype.$PhysicsPropsPlugin = PhysicsPropsPlugin
+        gsap.registerPlugin(PhysicsPropsPlugin)
+      <% } %>
+
+      <% if (options.clubPlugins.scrambleText) { %>
+        const { ScrambleTextPlugin } = require('gsap/ScrambleTextPlugin')
+        Vue.prototype.$ScrambleTextPlugin = ScrambleTextPlugin
+        gsap.registerPlugin(ScrambleTextPlugin)
+      <% } %>
+
+      <% if (options.clubPlugins.splitText) { %>
+        const { SplitText } = require('gsap/SplitText')
+        Vue.prototype.$SplitText = SplitText
+        gsap.registerPlugin(SplitText)
+      <% } %>
     }
 <% } %>
