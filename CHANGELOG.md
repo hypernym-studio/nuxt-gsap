@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.3.0...v1.3.1) (2021-04-03)
+
+
+### Bug Fixes
+
+* add missing options ([746003a](https://github.com/ivodolenc/nuxt-gsap-module/commit/746003a47aecb0ebcca8362de9379e8aaf14921f))
+
 ## [1.3.0](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.2.1...v1.3.0) (2021-04-03)
 
 
