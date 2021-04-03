@@ -6,6 +6,7 @@ export default function gsapModule(moduleOptions) {
   const options = {
     extraPlugins: {},
     extraEases: {},
+    clubPlugins: {},
 
     ...nuxt.options.gsap,
     ...moduleOptions

@@ -26,7 +26,8 @@ Vue.prototype.$gsap = gsap
 
 <% if (
   Object.keys(options.extraPlugins).length ||
-  Object.keys(options.extraEases).length
+  Object.keys(options.extraEases).length ||
+  Object.keys(options.clubPlugins).length
   ) { %>
     if (process.client) {
       <% if (options.extraPlugins.cssRule) { %>
