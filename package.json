@@ -45,12 +45,12 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxtjs/eslint-config": "^6.0.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.27.0",
+    "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^6.0.0",
-    "prettier": "^2.3.0",
+    "prettier": "^2.3.2",
     "standard-version": "^9.3.0"
   },
   "publishConfig": {
