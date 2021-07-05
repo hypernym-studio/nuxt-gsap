@@ -40,7 +40,7 @@
     "lint:all:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
-    "gsap": "^3.6.1"
+    "gsap": "^3.7.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
