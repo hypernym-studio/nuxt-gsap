@@ -40,18 +40,18 @@
     "lint:all:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
-    "gsap": "^3.7.0"
+    "gsap": "^3.7.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@nuxtjs/eslint-config": "^6.0.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.30.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^6.0.0",
+    "husky": "^7.0.1",
     "prettier": "^2.3.2",
-    "standard-version": "^9.3.0"
+    "standard-version": "^9.3.1"
   },
   "publishConfig": {
     "access": "public"
