@@ -7,6 +7,7 @@ export default function gsapModule(moduleOptions) {
     extraPlugins: {},
     extraEases: {},
     clubPlugins: {},
+    registerEffect: [],
 
     ...nuxt.options.gsap,
     ...moduleOptions
