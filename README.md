@@ -11,7 +11,8 @@ GSAP module for Nuxt.js
 - Helps you integrate `GSAP` javascript animation library
 - Allows you to easily animate elements via custom `v-gsap` directive 🔥
 - Provides a solution for global use via `this.$gsap`
-- Automatically registers plugins after activation
+- Automatically registers `plugins` after activation
+- Allows you to easily register `global effects` in no time
 - Supports `Club GreenSock` premium plugins
 - `Zero-config` setup ready to go 🚀
 
@@ -48,6 +49,7 @@ Here are some code examples
 - [Page Transitions](https://codesandbox.io/s/example-nuxt-gsap-module-basic-bqi7c)
 - [Staggering](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/staggering)
 - [Animate On Scroll](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/animate-on-scroll)
+- [Register Effect](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/register-effect)
 
 ### Custom modifier: `v-gsap.set`
 
@@ -255,7 +257,23 @@ export default {
       expoScaleEase: false,
       roughEase: false,
       slowMo: false,
-    }
+    },
+    clubPlugins: {
+      customEase: false,
+      customBounce: false,
+      customWiggle: false,
+      drawSVG: false,
+      flip: false,
+      gsDevTools: false,
+      inertia: false,
+      morphSVG: false,
+      motionPathHelper: false,
+      physics2D: false,
+      physicsProps: false,
+      scrambleText: false,
+      splitText: false,
+    },
+    registerEffect: []
   }
 }
 ```
@@ -304,6 +322,65 @@ gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 ```html
 <div v-gsap.set="{ /* ... */ }"></div>
 ```
+
+## Register Effect
+
+- Default: `[]`
+
+This option allows you to easily register a global effect (you can register `multiple` effects).
+
+Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    registerEffect: [
+      {
+        name: 'fadeIn',
+        effect: (targets, config) => {
+          // ...
+        }
+      },
+      {
+        name: 'fadeOut',
+        effect: (targets, config) => {
+          // ...
+        }
+      },
+      {
+        name: 'fadeInOut',
+        effect: (targets, config) => {
+          // ...
+        }
+      }
+    ]
+  }
+}
+```
+
+```js
+// Effects can be accessed as follows
+this.$gsap.effects.fadeIn('.class')
+this.$gsap.effects.fadeOut('#id')
+this.$gsap.effects.fadeInOut(element)
+
+// or
+const gsap = this.$gsap
+
+gsap.effects.fadeIn('.class')
+gsap.effects.fadeOut('#id')
+gsap.effects.fadeInOut(element)
+
+// or directly on timelines
+let tl = this.$gsap.timeline()
+tl.fadeIn('.class', { duration: 3 })
+  .fadeIn('#id', { duration: 1 }, '+=2')
+  .to('.class2', { x: 100 })
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.registerEffect)
 
 ## Extra Plugins
 
