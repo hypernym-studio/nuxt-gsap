@@ -10,21 +10,21 @@ GSAP module for Nuxt.js
 
 - Helps you integrate `GSAP` javascript animation library
 - Allows you to easily animate elements via custom `v-gsap` directive 🔥
-- Provides a solution for global use via `this.$gsap`
+- Provides a solution for global use via `this.$gsap` 🤩
 - Automatically registers `plugins` after activation
-- Allows you to easily register `global effects` in no time
-- Supports `Club GreenSock` premium plugins
+- Allows you to easily register global `effects` & `eases`
+- Supports `Club GreenSock` premium plugins 🟢
 - `Zero-config` setup ready to go 🚀
 
 ## Quick Start
 
-1. Add `nuxt-gsap-module` dependency to your project
+1. Install `nuxt-gsap-module` dependency to your project
 
 ```bash
-$ npm install --save-dev nuxt-gsap-module # or yarn add --dev nuxt-gsap-module
+$ npm install --save-dev nuxt-gsap-module # or yarn add -D nuxt-gsap-module
 ```
 
-2. Add `nuxt-gsap-module` to the `buildModules` section of `nuxt.config.js`
+2. Enable `nuxt-gsap-module` in the `buildModules` section
 
 ```js
 // nuxt.config.js
@@ -33,12 +33,12 @@ export default {
   buildModules: ['nuxt-gsap-module'],
 
   gsap: {
-    /* module options */
+    /* Module Options */
   }
 }
 ```
 
-That's it! Start developing your app ✨
+That's it! Start developing your app!
 
 ## Examples
 
@@ -50,77 +50,7 @@ Here are some code examples
 - [Staggering](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/staggering)
 - [Animate On Scroll](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/animate-on-scroll)
 - [Register Effect](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/register-effect)
-
-### Custom modifier: `v-gsap.set`
-
-```html
-<!-- index.vue -->
-
-<template>
-  <p v-gsap.set="{ x: 100, y: 50 }">NUXT GSAP</p>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.set)
-
-### Custom modifier: `v-gsap.to`
-
-```html
-<!-- index.vue -->
-
-<template>
-  <h1
-    v-gsap.to="{
-      rotation: 360,
-      x: 150,
-      duration: 2
-    }"
-  >
-    NUXT GSAP
-  </h1>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.to)
-
-### Custom modifier: `v-gsap.from`
-
-```html
-<!-- index.vue -->
-
-<template>
-  <span
-    v-gsap.from="{
-      opacity: 0, 
-      x: -200, 
-      duration: 1
-    }"
-  >
-    NUXT GSAP
-  </span>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.from)
-
-### Custom modifier: `v-gsap.fromTo`
-
-```html
-<!-- index.vue -->
-
-<template>
-  <p
-    v-gsap.fromTo="[
-      { opacity: 0, y: -350 },
-      { opacity: 1, y: 0, duration: 3 }
-    ]"
-  >
-    NUXT GSAP
-  </p>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.fromTo)
+- [Register Ease](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/register-ease)
 
 ### Simple box rotation
 
@@ -147,7 +77,6 @@ Here are some code examples
 // nuxt.config.js
 
 {
-  // Enable module
   buildModules: ['nuxt-gsap-module'],
 
   // Add global page transition
@@ -183,9 +112,9 @@ Here are some code examples
 }
 ```
 
-### Multiple plugins usage example
+### Multiple plugins
 
-✅ The module automatically registers plugins globally (after plugin activation in the settings), so you won’t have to worry about it (applies to all plugins).
+After activation, plugins are automatically registered and available globally, so you won’t have to worry about it (applies to all plugins).
 
 ```js
 // nuxt.config.js
@@ -193,10 +122,6 @@ Here are some code examples
 {
   gsap: {
     extraPlugins: {
-      /**
-       * After activation, plugins are automatically
-       * registered and available globally
-       */
       scrollTo: true,
       scrollTrigger: true
     },
@@ -234,57 +159,110 @@ export default {
 }
 ```
 
-## Options
+## Custom Modifiers
 
-**Default options**
+Module allows you to easily animate elements via custom `v-gsap` directive and its modifiers.
+
+### gsap.set()
+
+- Modifier: **`v-gsap.set`**
+- Default: `true`
+
+```html
+<template>
+  <p v-gsap.set="{ x: 100, y: 50 }">NUXT GSAP</p>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.set)
+
+### gsap.to()
+
+- Modifier: **`v-gsap.to`**
+- Default: `true`
+
+```html
+<template>
+  <h1
+    v-gsap.to="{
+      rotation: 360,
+      x: 150,
+      duration: 2
+    }"
+  >
+    NUXT GSAP
+  </h1>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.to)
+
+### gsap.from()
+
+- Modifier: **`v-gsap.from`**
+- Default: `true`
+
+```html
+<template>
+  <span
+    v-gsap.from="{
+      opacity: 0, 
+      x: -200, 
+      duration: 1
+    }"
+  >
+    NUXT GSAP
+  </span>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.from)
+
+### gsap.fromTo()
+
+- Modifier: **`v-gsap.fromTo`**
+- Default: `true`
+
+```html
+<template>
+  <p
+    v-gsap.fromTo="[
+      { opacity: 0, y: -350 },
+      { opacity: 1, y: 0, duration: 3 }
+    ]"
+  >
+    NUXT GSAP
+  </p>
+</template>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.fromTo)
+
+## Module Options
+
+Here are all the `default` options that can be used for customization:
 
 ```js
 // nuxt.config.js
 
 {
   gsap: {
-    extraPlugins: {
-      cssRule: false,
-      draggable: false,
-      easel: false,
-      motionPath: false,
-      pixi: false,
-      text: false,
-      scrollTo: false,
-      scrollTrigger: false
-    },
-    extraEases: {
-      expoScaleEase: false,
-      roughEase: false,
-      slowMo: false,
-    },
-    clubPlugins: {
-      customEase: false,
-      customBounce: false,
-      customWiggle: false,
-      drawSVG: false,
-      flip: false,
-      gsDevTools: false,
-      inertia: false,
-      morphSVG: false,
-      motionPathHelper: false,
-      physics2D: false,
-      physicsProps: false,
-      scrambleText: false,
-      splitText: false,
-    },
-    registerEffect: []
+    extraPlugins: {},
+    extraEases: {},
+    clubPlugins: {},
+    registerEffect: [],
+    registerEase: [],
   }
 }
 ```
 
 ## GSAP's core
 
-### `gsap`
+### $gsap
 
 - Default: `true`
 
-✅ GSAP's core is enabled by default so there is no need for additional configuration.
+GSAP's core is `enabled` by default so there is no need for additional configuration.
 
 ```js
 // nuxt.config.js
@@ -305,31 +283,11 @@ const gsap = this.$gsap
 gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 ```
 
-**Use in templates**
-
-```html
-<div v-gsap.to="{ /* ... */ }"></div>
-```
-
-```html
-<div v-gsap.from="{ /* ... */ }"></div>
-```
-
-```html
-<div v-gsap.fromTo="[{ /* ... */ }, { /* ... */ }]"></div>
-```
-
-```html
-<div v-gsap.set="{ /* ... */ }"></div>
-```
-
 ## Register Effect
 
 - Default: `[]`
 
-This option allows you to easily register a global effect (you can register `multiple` effects).
-
-Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
+This option allows you to easily register a global effect. Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
 
 ```js
 // nuxt.config.js
@@ -368,7 +326,6 @@ this.$gsap.effects.fadeInOut(element)
 
 // or
 const gsap = this.$gsap
-
 gsap.effects.fadeIn('.class')
 gsap.effects.fadeOut('#id')
 gsap.effects.fadeInOut(element)
@@ -382,9 +339,66 @@ tl.fadeIn('.class', { duration: 3 })
 
 [More info](https://greensock.com/docs/v3/GSAP/gsap.registerEffect)
 
+## Register Ease
+
+- Default: `[]`
+
+This option allows you to easily register a global ease.
+
+```js
+// nuxt.config.js
+
+{
+  gsap: {
+    registerEase: [
+      {
+        name: 'myEase',
+        ease: progress => {
+          return progress // linear
+        }
+      },
+      {
+        name: 'ease.2',
+        ease: progress => {
+          // ...
+        }
+      },
+      {
+        name: 'customEase.3',
+        ease: progress => {
+          // ...
+        }
+      }
+    ]
+  }
+}
+```
+
+```html
+<!-- index.vue -->
+
+<template>
+  <div>
+    <h1 to="/about" class="title">Custom Title</h1>
+    <p class="text">Custom text...</p>
+  </div>
+</template>
+
+<script>
+  export default {
+    mounted() {
+      this.$gsap.to('.title', { x: 100, ease: 'myEase' })
+      this.$gsap.to('.text', { y: 100, ease: 'ease.2' })
+    }
+  }
+</script>
+```
+
+[More info](https://greensock.com/docs/v3/GSAP/gsap.registerEase)
+
 ## Extra Plugins
 
-### `cssRule`
+### CSSRulePlugin
 
 - Default: `false`
 
@@ -407,7 +421,7 @@ this.$CSSRulePlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
 
-### `draggable`
+### Draggable
 
 - Default: `false`
 
@@ -430,7 +444,7 @@ this.$Draggable
 
 [More info](https://greensock.com/docs/v3/Plugins/Draggable)
 
-### `easel`
+### EaselPlugin
 
 - Default: `false`
 
@@ -453,7 +467,7 @@ this.$EaselPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/EaselPlugin)
 
-### `motionPath`
+### MotionPathPlugin
 
 - Default: `false`
 
@@ -476,7 +490,7 @@ this.$MotionPathPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/MotionPathPlugin)
 
-### `pixi`
+### PixiPlugin
 
 - Default: `false`
 
@@ -499,7 +513,7 @@ this.$PixiPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/PixiPlugin)
 
-### `text`
+### TextPlugin
 
 - Default: `false`
 
@@ -522,7 +536,7 @@ this.$TextPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/TextPlugin)
 
-### `scrollTo`
+### ScrollToPlugin
 
 - Default: `false`
 
@@ -545,7 +559,7 @@ this.$ScrollToPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/ScrollToPlugin)
 
-### `scrollTrigger`
+### ScrollTrigger
 
 - Default: `false`
 
@@ -568,9 +582,9 @@ this.$ScrollTrigger
 
 [More info](https://greensock.com/docs/v3/Plugins/ScrollTrigger)
 
-## Extra eases
+## Extra Eases
 
-### `expoScaleEase`
+### ExpoScaleEase
 
 - Default: `false`
 
@@ -593,7 +607,7 @@ this.$ExpoScaleEase
 
 [More info](https://greensock.com/docs/v3/Eases/ExpoScaleEase)
 
-### `roughEase`
+### RoughEase
 
 - Default: `false`
 
@@ -616,7 +630,7 @@ this.$RoughEase
 
 [More info](https://greensock.com/docs/v3/Eases/RoughEase)
 
-### `slowMo`
+### SlowMo
 
 - Default: `false`
 
@@ -639,7 +653,7 @@ this.$SlowMo
 
 [More info](https://greensock.com/docs/v3/Eases/SlowMo)
 
-## Club GreenSock
+## Club GreenSock Plugins
 
 `nuxt-gsap-module` supports Club GreenSock premium plugins. They can be easily activated via `module` settings, just like the free ones.
 
@@ -648,7 +662,7 @@ this.$SlowMo
 1. Follow the [official](https://youtu.be/30CivTsqqMY?t=87) instructions and install the `premium` plugins as usual.
 2. After installation, simply activate the desired plugins and that's it, you're ready to go!
 
-### `customEase`
+### CustomEase
 
 - Default: `false`
 
@@ -671,7 +685,7 @@ this.$CustomEase
 
 [More info](https://greensock.com/docs/v3/Eases/CustomEase)
 
-### `customBounce`
+### CustomBounce
 
 - Default: `false`
 
@@ -694,7 +708,7 @@ this.$CustomBounce
 
 [More info](https://greensock.com/docs/v3/Eases/CustomBounce)
 
-### `customWiggle`
+### CustomWiggle
 
 - Default: `false`
 
@@ -717,7 +731,7 @@ this.$CustomWiggle
 
 [More info](https://greensock.com/docs/v3/Eases/CustomWiggle)
 
-### `drawSVG`
+### DrawSVGPlugin
 
 - Default: `false`
 
@@ -740,7 +754,7 @@ this.$DrawSVGPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/DrawSVGPlugin)
 
-### `flip`
+### Flip
 
 - Default: `false`
 
@@ -763,7 +777,7 @@ this.$Flip
 
 [More info](https://greensock.com/docs/v3/Plugins/Flip)
 
-### `gsDevTools`
+### GSDevTools
 
 - Default: `false`
 
@@ -786,7 +800,7 @@ this.$GSDevTools
 
 [More info](https://greensock.com/docs/v3/Plugins/GSDevTools)
 
-### `inertia`
+### InertiaPlugin
 
 - Default: `false`
 
@@ -809,7 +823,7 @@ this.$InertiaPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/InertiaPlugin)
 
-### `morphSVG`
+### MorphSVGPlugin
 
 - Default: `false`
 
@@ -832,7 +846,7 @@ this.$MorphSVGPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/MorphSVGPlugin)
 
-### `motionPathHelper`
+### MotionPathHelper
 
 - Default: `false`
 
@@ -855,7 +869,7 @@ this.$MotionPathHelper
 
 [More info](https://greensock.com/docs/v3/Plugins/MotionPathHelper)
 
-### `physics2D`
+### Physics2DPlugin
 
 - Default: `false`
 
@@ -878,7 +892,7 @@ this.$Physics2DPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/Physics2DPlugin)
 
-### `physicsProps`
+### PhysicsPropsPlugin
 
 - Default: `false`
 
@@ -901,7 +915,7 @@ this.$PhysicsPropsPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/PhysicsPropsPlugin)
 
-### `scrambleText`
+### ScrambleTextPlugin
 
 - Default: `false`
 
@@ -924,7 +938,7 @@ this.$ScrambleTextPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/ScrambleTextPlugin)
 
-### `splitText`
+### SplitText
 
 - Default: `false`
 
@@ -950,8 +964,6 @@ this.$SplitText
 ## License
 
 **GSAP**
-
-For more information, check the official GSAP site.
 
 [GSAP License](https://greensock.com/licensing/)
 
