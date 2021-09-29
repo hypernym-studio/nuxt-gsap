@@ -23,3 +23,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #00c58e;
+}
+</style>
