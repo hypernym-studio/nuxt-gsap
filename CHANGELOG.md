@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.4.0...v1.5.0) (2021-09-29)
+
+
+### Features
+
+* add new 'registerEase' option to simplify global registration ([f771020](https://github.com/ivodolenc/nuxt-gsap-module/commit/f771020eb0ca6c4b60236b8efbb044a6a5426d4a))
+
 ## [1.4.0](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.3.2...v1.4.0) (2021-08-06)
 
 
