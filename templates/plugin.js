@@ -30,6 +30,14 @@ Vue.directive('gsap', (el, binding) => {
   })
 <% } %>
 
+<% if (options.registerEase.length) { %>
+  const eases = <%= serialize(options.registerEase) %>
+
+  eases.forEach(_ease => {
+    gsap.registerEase(_ease.name, _ease.ease)
+  })
+<% } %>
+
 export default ({ app }, inject) => {
   inject('gsap', gsap)
 
@@ -106,7 +114,6 @@ export default ({ app }, inject) => {
           gsap.registerPlugin(SlowMo)
         <% } %>
 
-        // Club Plugins
         <% if (options.clubPlugins.customEase) { %>
           const { CustomEase } = require('gsap/CustomEase')
           inject('CustomEase', CustomEase)
