@@ -6,13 +6,14 @@ module.exports = {
     node: true
   },
 
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    parser: 'babel-eslint',
     sourceType: 'module',
-    ecmaVersion: 2020
+    ecmaVersion: 2020,
+    requireConfigFile: false
   },
 
-  extends: ['@nuxtjs', 'eslint-config-prettier'],
+  extends: ['eslint-config-prettier'],
 
   rules: {
     'no-debugger': 'warn',
