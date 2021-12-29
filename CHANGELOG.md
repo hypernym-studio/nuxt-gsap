@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.5.0...v1.6.0) (2021-12-29)
+
+
+### Features
+
+* 'Flip' and 'CustomEase' moved to public downloads. 'CSSRulePlugin' has been deprecated ([6be869a](https://github.com/ivodolenc/nuxt-gsap-module/commit/6be869a681fe19d9ceba2ef1f7908555bf3ff5c5))
+
 ## [1.5.0](https://github.com/ivodolenc/nuxt-gsap-module/compare/v1.4.0...v1.5.0) (2021-09-29)
 
 
