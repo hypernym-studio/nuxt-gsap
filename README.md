@@ -400,7 +400,22 @@ This option allows you to easily register a global ease.
 
 ### CSSRulePlugin
 
+- Deprecated (`>=v1.6`)
+
+CSSRulePlugin has been `deprecated` in favor of using CSS variables which have excellent browser support these days.
+
+GSAP has native support for animating CSS variables, like:
+
+```js
+this.$gsap.to('html', { '--my-variable': 100, duration: 2 })
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
+
+### Flip
+
 - Default: `false`
+- Moved to public downloads (`>=v1.6`)
 
 ```js
 // nuxt.config.js
@@ -408,7 +423,7 @@ This option allows you to easily register a global ease.
 {
   gsap: {
     extraPlugins: {
-      cssRule: true
+      flip: true
     }
   }
 }
@@ -416,10 +431,10 @@ This option allows you to easily register a global ease.
 
 ```js
 // Access the plugin by using
-this.$CSSRulePlugin
+this.$Flip
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
+[More info](https://greensock.com/docs/v3/Plugins/Flip)
 
 ### Draggable
 
@@ -653,25 +668,17 @@ this.$SlowMo
 
 [More info](https://greensock.com/docs/v3/Eases/SlowMo)
 
-## Club GreenSock Plugins
-
-`nuxt-gsap-module` supports Club GreenSock premium plugins. They can be easily activated via `module` settings, just like the free ones.
-
-**Installation**
-
-1. Follow the [official](https://youtu.be/30CivTsqqMY?t=87) instructions and install the `premium` plugins as usual.
-2. After installation, simply activate the desired plugins and that's it, you're ready to go!
-
 ### CustomEase
 
 - Default: `false`
+- Moved to public downloads (`>=v1.6`)
 
 ```js
 // nuxt.config.js
 
 {
   gsap: {
-    clubPlugins: {
+    extraEases: {
       customEase: true
     }
   }
@@ -684,6 +691,15 @@ this.$CustomEase
 ```
 
 [More info](https://greensock.com/docs/v3/Eases/CustomEase)
+
+## Club GreenSock Plugins
+
+`nuxt-gsap-module` supports Club GreenSock premium plugins. They can be easily activated via `module` settings, just like the free ones.
+
+**Installation**
+
+1. Follow the [official](https://youtu.be/30CivTsqqMY?t=87) instructions and install the `premium` plugins as usual.
+2. After installation, simply activate the desired plugins and that's it, you're ready to go!
 
 ### CustomBounce
 
@@ -753,29 +769,6 @@ this.$DrawSVGPlugin
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/DrawSVGPlugin)
-
-### Flip
-
-- Default: `false`
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    clubPlugins: {
-      flip: true
-    }
-  }
-}
-```
-
-```js
-// Access the plugin by using
-this.$Flip
-```
-
-[More info](https://greensock.com/docs/v3/Plugins/Flip)
 
 ### GSDevTools
 
