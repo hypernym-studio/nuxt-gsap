@@ -46,14 +46,13 @@ export default ({ app }, inject) => {
     Object.keys(options.extraEases).length ||
     Object.keys(options.clubPlugins).length
     ) { %>
-      if (process.client) {
-        <% if (options.extraPlugins.cssRule) { %>
-          const { CSSRulePlugin } = require('gsap/CSSRulePlugin')
-          inject('CSSRulePlugin', CSSRulePlugin)
-          gsap.registerPlugin(CSSRulePlugin)
-          <% } %>
-          
-          
+      if (process.client) {    
+        <% if (options.extraPlugins.flip) { %>
+          const { Flip } = require('gsap/Flip')
+          inject('Flip', Flip)
+          gsap.registerPlugin(Flip)
+        <% } %>
+
         <% if (options.extraPlugins.draggable) { %>
           const { Draggable } = require('gsap/Draggable')
           inject('Draggable', Draggable)
@@ -114,7 +113,7 @@ export default ({ app }, inject) => {
           gsap.registerPlugin(SlowMo)
         <% } %>
 
-        <% if (options.clubPlugins.customEase) { %>
+        <% if (options.extraEases.customEase) { %>
           const { CustomEase } = require('gsap/CustomEase')
           inject('CustomEase', CustomEase)
           gsap.registerPlugin(CustomEase)
@@ -136,12 +135,6 @@ export default ({ app }, inject) => {
           const { DrawSVGPlugin } = require('gsap/DrawSVGPlugin')
           inject('DrawSVGPlugin', DrawSVGPlugin)
           gsap.registerPlugin(DrawSVGPlugin)
-        <% } %>
-
-        <% if (options.clubPlugins.flip) { %>
-          const { Flip } = require('gsap/Flip')
-          inject('Flip', Flip)
-          gsap.registerPlugin(Flip)
         <% } %>
 
         <% if (options.clubPlugins.gsDevTools) { %>
