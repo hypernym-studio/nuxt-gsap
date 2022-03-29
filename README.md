@@ -1,5 +1,5 @@
 <p align="center">
-    <img src=".github/assets/cover.svg" >
+    <img src=".github/assets/cover22.svg" >
 </p>
 
 <h1>Nuxt Gsap Module</h1>
