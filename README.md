@@ -2,7 +2,7 @@
     <img src=".github/assets/cover.svg" >
 </p>
 
-<h1>Nuxt GSAP Module</h1>
+<h1>Nuxt Gsap Module</h1>
 
 GSAP module for Nuxt.js
 
