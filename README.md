@@ -57,7 +57,7 @@ Here are some code examples
 ```js
 // index.vue
 
-{
+export default {
   mounted() {
     this.boxRotation()
   },
@@ -76,7 +76,7 @@ Here are some code examples
 ```js
 // nuxt.config.js
 
-{
+export default {
   buildModules: ['nuxt-gsap-module'],
 
   // Add global page transition
@@ -119,7 +119,7 @@ After activation, plugins are automatically registered and available globally, s
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {
       scrollTo: true,
@@ -245,13 +245,13 @@ Here are all the `default` options that can be used for customization:
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {},
     extraEases: {},
     clubPlugins: {},
     registerEffect: [],
-    registerEase: [],
+    registerEase: []
   }
 }
 ```
@@ -267,7 +267,7 @@ GSAP's core is `enabled` by default so there is no need for additional configura
 ```js
 // nuxt.config.js
 
-{
+export default {
   buildModules: ['nuxt-gsap-module']
 }
 ```
@@ -292,7 +292,7 @@ This option allows you to easily register a global effect. Once the effect is re
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     registerEffect: [
       {
@@ -348,7 +348,7 @@ This option allows you to easily register a global ease.
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     registerEase: [
       {
@@ -398,20 +398,6 @@ This option allows you to easily register a global ease.
 
 ## Extra Plugins
 
-### CSSRulePlugin
-
-- Deprecated (`>=v1.6`)
-
-CSSRulePlugin has been `deprecated` in favor of using CSS variables which have excellent browser support these days.
-
-GSAP has native support for animating CSS variables, like:
-
-```js
-this.$gsap.to('html', { '--my-variable': 100, duration: 2 })
-```
-
-[More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
-
 ### Flip
 
 - Default: `false`
@@ -420,7 +406,7 @@ this.$gsap.to('html', { '--my-variable': 100, duration: 2 })
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {
       flip: true
@@ -436,6 +422,75 @@ this.$Flip
 
 [More info](https://greensock.com/docs/v3/Plugins/Flip)
 
+### ScrollTrigger
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+export default {
+  gsap: {
+    extraPlugins: {
+      scrollTrigger: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$ScrollTrigger
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/ScrollTrigger)
+
+### Observer
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+export default {
+  gsap: {
+    extraPlugins: {
+      observer: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$Observer
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/Observer)
+
+### ScrollToPlugin
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+export default {
+  gsap: {
+    extraPlugins: {
+      scrollTo: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$ScrollToPlugin
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/ScrollToPlugin)
+
 ### Draggable
 
 - Default: `false`
@@ -443,7 +498,7 @@ this.$Flip
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {
       draggable: true
@@ -466,7 +521,7 @@ this.$Draggable
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {
       easel: true
@@ -489,7 +544,7 @@ this.$EaselPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {
       motionPath: true
@@ -512,7 +567,7 @@ this.$MotionPathPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {
       pixi: true
@@ -535,7 +590,7 @@ this.$PixiPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraPlugins: {
       text: true
@@ -551,51 +606,19 @@ this.$TextPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/TextPlugin)
 
-### ScrollToPlugin
+### CSSRulePlugin
 
-- Default: `false`
+- Deprecated (`>=v1.6`)
 
-```js
-// nuxt.config.js
+CSSRulePlugin has been `deprecated` in favor of using CSS variables which have excellent browser support these days.
 
-{
-  gsap: {
-    extraPlugins: {
-      scrollTo: true
-    }
-  }
-}
-```
+GSAP has native support for animating CSS variables, like:
 
 ```js
-// Access the plugin by using
-this.$ScrollToPlugin
+this.$gsap.to('html', { '--my-variable': 100, duration: 2 })
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/ScrollToPlugin)
-
-### ScrollTrigger
-
-- Default: `false`
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    extraPlugins: {
-      scrollTrigger: true
-    }
-  }
-}
-```
-
-```js
-// Access the plugin by using
-this.$ScrollTrigger
-```
-
-[More info](https://greensock.com/docs/v3/Plugins/ScrollTrigger)
+[More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
 
 ## Extra Eases
 
@@ -606,7 +629,7 @@ this.$ScrollTrigger
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraEases: {
       expoScaleEase: true
@@ -629,7 +652,7 @@ this.$ExpoScaleEase
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraEases: {
       roughEase: true
@@ -652,7 +675,7 @@ this.$RoughEase
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraEases: {
       slowMo: true
@@ -676,7 +699,7 @@ this.$SlowMo
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     extraEases: {
       customEase: true
@@ -701,52 +724,6 @@ this.$CustomEase
 1. Follow the [official](https://youtu.be/30CivTsqqMY?t=87) instructions and install the `premium` plugins as usual.
 2. After installation, simply activate the desired plugins and that's it, you're ready to go!
 
-### CustomBounce
-
-- Default: `false`
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    clubPlugins: {
-      customBounce: true
-    }
-  }
-}
-```
-
-```js
-// Access the plugin by using
-this.$CustomBounce
-```
-
-[More info](https://greensock.com/docs/v3/Eases/CustomBounce)
-
-### CustomWiggle
-
-- Default: `false`
-
-```js
-// nuxt.config.js
-
-{
-  gsap: {
-    clubPlugins: {
-      customWiggle: true
-    }
-  }
-}
-```
-
-```js
-// Access the plugin by using
-this.$CustomWiggle
-```
-
-[More info](https://greensock.com/docs/v3/Eases/CustomWiggle)
-
 ### DrawSVGPlugin
 
 - Default: `false`
@@ -754,7 +731,7 @@ this.$CustomWiggle
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       drawSVG: true
@@ -770,6 +747,29 @@ this.$DrawSVGPlugin
 
 [More info](https://greensock.com/docs/v3/Plugins/DrawSVGPlugin)
 
+### ScrollSmoother
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+export default {
+  gsap: {
+    clubPlugins: {
+      scrollSmoother: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$ScrollSmoother
+```
+
+[More info](https://greensock.com/docs/v3/Plugins/ScrollSmoother)
+
 ### GSDevTools
 
 - Default: `false`
@@ -777,7 +777,7 @@ this.$DrawSVGPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       gsDevTools: true
@@ -800,7 +800,7 @@ this.$GSDevTools
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       inertia: true
@@ -823,7 +823,7 @@ this.$InertiaPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       morphSVG: true
@@ -846,7 +846,7 @@ this.$MorphSVGPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       motionPathHelper: true
@@ -892,7 +892,7 @@ this.$Physics2DPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       physicsProps: true
@@ -915,7 +915,7 @@ this.$PhysicsPropsPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       scrambleText: true
@@ -938,7 +938,7 @@ this.$ScrambleTextPlugin
 ```js
 // nuxt.config.js
 
-{
+export default {
   gsap: {
     clubPlugins: {
       splitText: true
@@ -953,6 +953,52 @@ this.$SplitText
 ```
 
 [More info](https://greensock.com/docs/v3/Plugins/SplitText)
+
+### CustomBounce
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+export default {
+  gsap: {
+    clubPlugins: {
+      customBounce: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$CustomBounce
+```
+
+[More info](https://greensock.com/docs/v3/Eases/CustomBounce)
+
+### CustomWiggle
+
+- Default: `false`
+
+```js
+// nuxt.config.js
+
+export default {
+  gsap: {
+    clubPlugins: {
+      customWiggle: true
+    }
+  }
+}
+```
+
+```js
+// Access the plugin by using
+this.$CustomWiggle
+```
+
+[More info](https://greensock.com/docs/v3/Eases/CustomWiggle)
 
 ## License
 
