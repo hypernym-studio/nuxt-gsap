@@ -39,7 +39,7 @@
     "lint:fix:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
-    "gsap": "^3.9.1"
+    "gsap": "^3.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
@@ -49,7 +49,7 @@
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^7.0.4",
-    "prettier": "^2.6.1",
+    "prettier": "^2.6.2",
     "standard-version": "^9.3.2"
   }
 }
