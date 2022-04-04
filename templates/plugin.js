@@ -53,6 +53,24 @@ export default ({ app }, inject) => {
           gsap.registerPlugin(Flip)
         <% } %>
 
+        <% if (options.extraPlugins.scrollTrigger) { %>
+          const { ScrollTrigger } = require('gsap/ScrollTrigger')
+          inject('ScrollTrigger', ScrollTrigger)
+          gsap.registerPlugin(ScrollTrigger)
+        <% } %>
+
+        <% if (options.extraPlugins.observer) { %>
+          const { Observer } = require('gsap/Observer')
+          inject('Observer', Observer)
+          gsap.registerPlugin(Observer)
+        <% } %>
+
+        <% if (options.extraPlugins.scrollTo) { %>
+          const { ScrollToPlugin } = require('gsap/ScrollToPlugin')
+          inject('ScrollToPlugin', ScrollToPlugin)
+          gsap.registerPlugin(ScrollToPlugin)
+        <% } %>
+
         <% if (options.extraPlugins.draggable) { %>
           const { Draggable } = require('gsap/Draggable')
           inject('Draggable', Draggable)
@@ -83,18 +101,6 @@ export default ({ app }, inject) => {
           gsap.registerPlugin(TextPlugin)
         <% } %>
 
-        <% if (options.extraPlugins.scrollTo) { %>
-          const { ScrollToPlugin } = require('gsap/ScrollToPlugin')
-          inject('ScrollToPlugin', ScrollToPlugin)
-          gsap.registerPlugin(ScrollToPlugin)
-        <% } %>
-
-        <% if (options.extraPlugins.scrollTrigger) { %>
-          const { ScrollTrigger } = require('gsap/ScrollTrigger')
-          inject('ScrollTrigger', ScrollTrigger)
-          gsap.registerPlugin(ScrollTrigger)
-        <% } %>
-
         <% if (options.extraEases.expoScaleEase) { %>
           const { ExpoScaleEase } = require('gsap/EasePack')
           inject('ExpoScaleEase', ExpoScaleEase)
@@ -119,22 +125,16 @@ export default ({ app }, inject) => {
           gsap.registerPlugin(CustomEase)
         <% } %>
 
-        <% if (options.clubPlugins.customBounce) { %>
-          const { CustomBounce } = require('gsap/CustomBounce')
-          inject('CustomBounce', CustomBounce)
-          gsap.registerPlugin(CustomBounce)
-        <% } %>
-
-        <% if (options.clubPlugins.customWiggle) { %>
-          const { CustomWiggle } = require('gsap/CustomWiggle')
-          inject('CustomWiggle', CustomWiggle)
-          gsap.registerPlugin(CustomWiggle)
-        <% } %>
-
         <% if (options.clubPlugins.drawSVG) { %>
           const { DrawSVGPlugin } = require('gsap/DrawSVGPlugin')
           inject('DrawSVGPlugin', DrawSVGPlugin)
           gsap.registerPlugin(DrawSVGPlugin)
+        <% } %>
+        
+        <% if (options.clubPlugins.scrollSmoother) { %>
+          const { ScrollSmoother } = require('gsap/ScrollSmoother')
+          inject('ScrollSmoother', ScrollSmoother)
+          gsap.registerPlugin(ScrollSmoother)
         <% } %>
 
         <% if (options.clubPlugins.gsDevTools) { %>
@@ -183,6 +183,18 @@ export default ({ app }, inject) => {
           const { SplitText } = require('gsap/SplitText')
           inject('SplitText', SplitText)
           gsap.registerPlugin(SplitText)
+        <% } %>
+
+        <% if (options.clubPlugins.customBounce) { %>
+          const { CustomBounce } = require('gsap/CustomBounce')
+          inject('CustomBounce', CustomBounce)
+          gsap.registerPlugin(CustomBounce)
+        <% } %>
+
+        <% if (options.clubPlugins.customWiggle) { %>
+          const { CustomWiggle } = require('gsap/CustomWiggle')
+          inject('CustomWiggle', CustomWiggle)
+          gsap.registerPlugin(CustomWiggle)
         <% } %>
       }
   <% } %>
