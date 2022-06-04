@@ -4,15 +4,10 @@
   "description": "GSAP module for Nuxt.js",
   "author": "Ivo Dolenc",
   "license": "MIT",
-  "contributors": [
-    {
-      "name": "Ivo Dolenc <ivodolenc@gmail.com>"
-    }
-  ],
-  "homepage": "https://github.com/ivodolenc/nuxt-gsap-module#readme",
+  "homepage": "https://github.com/ivodolenc/nuxt-gsap-module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ivodolenc/nuxt-gsap-module.git"
+    "url": "https://github.com/ivodolenc/nuxt-gsap-module.git"
   },
   "bugs": {
     "url": "https://github.com/ivodolenc/nuxt-gsap-module/issues"
@@ -39,17 +34,17 @@
     "lint:fix:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
-    "gsap": "^3.10.2"
+    "gsap": "^3.10.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/eslint-parser": "^7.17.0",
-    "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1",
-    "eslint": "^8.12.0",
+    "@babel/core": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.2",
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "prettier": "^2.6.2",
-    "standard-version": "^9.3.2"
+    "standard-version": "^9.5.0"
   }
 }
