@@ -1,6 +1,6 @@
 {
   "name": "nuxt-gsap-module",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "GSAP module for Nuxt.js",
   "author": "Ivo Dolenc",
   "license": "MIT",
