@@ -30,21 +30,21 @@
   ],
   "scripts": {
     "release": "standard-version && git push --follow-tags && npm publish",
-    "lint:eslint": "eslint --ext .js .",
-    "lint:fix:eslint": "yarn lint:eslint --fix"
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
   },
   "dependencies": {
-    "gsap": "^3.11.0"
+    "gsap": "^3.11.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.13",
-    "@babel/eslint-parser": "^7.18.9",
-    "@commitlint/cli": "^17.0.3",
-    "@commitlint/config-conventional": "^17.0.3",
-    "eslint": "^8.22.0",
-    "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.1",
-    "prettier": "^2.7.1",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "^2.8.4",
     "standard-version": "^9.5.0"
-  }
+  },
+  "eslintConfig": {
+    "extends": "./.config/eslint.config.cjs"
+  },
+  "prettier": "./.config/prettier.config.cjs"
 }

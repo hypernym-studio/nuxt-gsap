@@ -1,8 +1,8 @@
 <!-- Thanks for opening a PR! Your contribution is much appreciated. -->
 
-<!-- Check the boxes with an 'x' that refers to your changes. -->
+## Type of Change
 
-## Types of Changes
+<!-- Check the boxes with an 'x' that refers to your changes. -->
 
 <!-- At least one checkbox needs to be selected. -->
 
@@ -12,15 +12,14 @@
 - [ ] Breaking change ⚠️
 - [ ] Other 🧑‍💻
 
-## Additional Details
-
-- [ ] Documentation added 📑
-- [ ] Related links added 🔗
-
-<!-- Specify additional information if necessary. -->
-
 ## Request Description
 
 <!-- Describe your new request in detail. -->
 
 <!-- Add links to related issues, e.g. Fixes #number, Resolves #number, Closes #number etc. -->
+
+## Additional Details
+
+<!-- Provide additional information if necessary. -->
+
+<!-- Otherwise, feel free to delete the section. -->

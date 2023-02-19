@@ -46,7 +46,7 @@ export default ({ app }, inject) => {
     Object.keys(options.extraEases).length ||
     Object.keys(options.clubPlugins).length
     ) { %>
-      if (process.client) {    
+      if (process.client) {
         <% if (options.extraPlugins.flip) { %>
           const { Flip } = require('gsap/Flip')
           inject('Flip', Flip)
@@ -106,7 +106,7 @@ export default ({ app }, inject) => {
           inject('ExpoScaleEase', ExpoScaleEase)
           gsap.registerPlugin(ExpoScaleEase)
         <% } %>
-        
+
         <% if (options.extraEases.roughEase) { %>
           const { RoughEase } = require('gsap/EasePack')
           inject('RoughEase', RoughEase)
@@ -130,7 +130,7 @@ export default ({ app }, inject) => {
           inject('DrawSVGPlugin', DrawSVGPlugin)
           gsap.registerPlugin(DrawSVGPlugin)
         <% } %>
-        
+
         <% if (options.clubPlugins.scrollSmoother) { %>
           const { ScrollSmoother } = require('gsap/ScrollSmoother')
           inject('ScrollSmoother', ScrollSmoother)

@@ -1,10 +1,8 @@
-<p align="center">
-    <img src=".github/assets/cover22.svg" >
-</p>
+<h1 align="center">Nuxt Gsap Module</h1>
 
-<h1>Nuxt Gsap Module</h1>
+<p align="center">GSAP module for Nuxt.</p>
 
-GSAP module for Nuxt.js
+<h6 align="center">Currently compatible with Nuxt 2. <a href="https://github.com/ivodolenc/nuxt-gsap-module/issues/24">More info →</a></h6>
 
 ## Features
 
