@@ -1,25 +1,27 @@
 {
-  "name": "nuxt-gsap-module",
-  "version": "1.7.3",
-  "description": "GSAP module for Nuxt.js",
-  "author": "Ivo Dolenc",
+  "name": "@hypernym/nuxt-gsap",
+  "version": "2.0.0",
+  "author": "Hypernym Studio",
+  "description": "GSAP module for Nuxt.",
   "license": "MIT",
-  "homepage": "https://github.com/ivodolenc/nuxt-gsap-module",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ivodolenc/nuxt-gsap-module.git"
+  "repository": "hypernym-studio/nuxt-gsap",
+  "homepage": "https://github.com/hypernym-studio/nuxt-gsap",
+  "configKey": "gsap",
+  "type": "module",
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "types": "./dist/types.d.ts"
+    }
   },
-  "bugs": {
-    "url": "https://github.com/ivodolenc/nuxt-gsap-module/issues"
-  },
-  "main": "src/index.js",
   "files": [
-    "src",
-    "templates"
+    "dist",
+    "!dist/module.cjs"
   ],
   "keywords": [
     "nuxt",
-    "nuxtjs",
     "nuxt-gsap",
     "nuxt-module",
     "gsap-module",
@@ -29,22 +31,40 @@
     "gsap"
   ],
   "scripts": {
-    "release": "standard-version && git push --follow-tags && npm publish",
+    "dev": "nuxt dev playground",
+    "build:module": "nuxt-module-build",
+    "build:play": "nuxt build playground",
+    "generate:play": "nuxt generate playground",
+    "preview:play": "nuxt preview playground",
+    "prepublishOnly": "npm run build:module",
     "format": "prettier --write .",
     "lint": "eslint .",
     "fix": "eslint --fix ."
   },
   "dependencies": {
-    "gsap": "^3.11.4"
+    "gsap": "^3.11.5"
   },
   "devDependencies": {
-    "eslint": "^8.34.0",
-    "eslint-config-prettier": "^8.6.0",
-    "prettier": "^2.8.4",
-    "standard-version": "^9.5.0"
+    "@nuxt/module-builder": "^0.3.0",
+    "@types/node": "^18.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "nuxt": "^3.4.3",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "eslintConfig": {
     "extends": "./.config/eslint.config.cjs"
   },
-  "prettier": "./.config/prettier.config.cjs"
+  "prettier": "./.config/prettier.config.cjs",
+  "unbuild": {
+    "externals": [
+      "defu"
+    ]
+  }
 }
