@@ -66,13 +66,13 @@ const pluginDefault: Plugin<PluginDefault> = defineNuxtPlugin(async nuxtApp => {
       provide('TextPlugin', TextPlugin)
     }
 
-    if (extraEases?.expoScaleEase) {
+    if (extraEases?.expoScale) {
       const { ExpoScaleEase } = await import('gsap/EasePack')
       registerPlugin(ExpoScaleEase)
       provide('ExpoScaleEase', ExpoScaleEase)
     }
 
-    if (extraEases?.roughEase) {
+    if (extraEases?.rough) {
       const { RoughEase } = await import('gsap/EasePack')
       registerPlugin(RoughEase)
       provide('RoughEase', RoughEase)
@@ -84,7 +84,7 @@ const pluginDefault: Plugin<PluginDefault> = defineNuxtPlugin(async nuxtApp => {
       provide('SlowMo', SlowMo)
     }
 
-    if (extraEases?.customEase) {
+    if (extraEases?.custom) {
       const { CustomEase } = await import('gsap/CustomEase')
       registerPlugin(CustomEase)
       provide('CustomEase', CustomEase)

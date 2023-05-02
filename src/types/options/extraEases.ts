@@ -4,8 +4,8 @@
  * @since 2.0.0
  */
 export interface ExtraEases {
-  expoScaleEase?: boolean
-  roughEase?: boolean
+  expoScale?: boolean
+  rough?: boolean
   slowMo?: boolean
-  customEase?: boolean
+  custom?: boolean
 }
