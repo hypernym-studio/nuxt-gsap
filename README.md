@@ -1,410 +1,115 @@
-<h1 align="center">Nuxt Gsap Module</h1>
+# Nuxt Gsap Module
 
-<p align="center">GSAP module for Nuxt.</p>
-
-<h6 align="center">Currently compatible with Nuxt 2. <a href="https://github.com/ivodolenc/nuxt-gsap-module/issues/24">More info →</a></h6>
+GSAP module for Nuxt.
 
 ## Features
 
-- Helps you integrate `GSAP` javascript animation library
-- Allows you to easily animate elements via custom `v-gsap` directive 🔥
-- Provides a solution for global use via `this.$gsap` 🤩
-- Automatically registers `plugins` after activation
-- Allows you to easily register global `effects` & `eases`
-- Supports `Club GreenSock` premium plugins 🟢
-- `Zero-config` setup ready to go 🚀
+- Helps you integrate the GSAP animation library
+- Provides a solution for global use
+- Enables plugins with a simple boolean option
+- Automatically registers plugins after activation
+- Supports Club GreenSock premium plugins
+- Zero-config setup ready to go
+- TypeScript friendly
+- Super easy to use
 
 ## Quick Start
 
-1. Install `nuxt-gsap-module` dependency to your project
+1. Install `@hypernym/nuxt-gsap` to your project
 
-```bash
-$ npm install --save-dev nuxt-gsap-module # or yarn add -D nuxt-gsap-module
+```sh
+npm i -D @hypernym/nuxt-gsap
 ```
 
-2. Enable `nuxt-gsap-module` in the `buildModules` section
+2. Enable the module in the main config file
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
-  buildModules: ['nuxt-gsap-module'],
-
-  gsap: {
-    /* Module Options */
-  }
+{
+  modules: ['@hypernym/nuxt-gsap']
 }
 ```
 
 That's it! Start developing your app!
 
-## Examples
+## Module
 
-Here are some code examples
+Nuxt Gsap Module is completely rewritten in TypeScript. It also improves the development experience with detailed descriptions, examples and code auto-completion.
 
-- [Basic](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/basic)
-- [Custom Directive](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/custom-directive)
-- [Page Transitions](https://codesandbox.io/s/example-nuxt-gsap-module-basic-bqi7c)
-- [Staggering](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/staggering)
-- [Animate On Scroll](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/animate-on-scroll)
-- [Register Effect](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/register-effect)
-- [Register Ease](https://github.com/ivodolenc/nuxt-gsap-module/tree/master/examples/register-ease)
+The module comes with a _zero-config_ setup so after activation it automatically adds the GSAP core and it is globally available without additional settings.
 
-### Simple box rotation
+```html
+<!-- layout.vue | page.vue | component.vue -->
 
-```js
-// index.vue
+<template>
+  <div>
+    <h1 class="title">Nuxt Gsap</h1>
+  </div>
+</template>
 
-export default {
-  mounted() {
-    this.boxRotation()
-  },
+<script setup lang="ts">
+  const { $gsap } = useNuxtApp()
 
-  methods: {
-    boxRotation() {
-      const gsap = this.$gsap
-      gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
-    }
-  }
-}
+  onMounted(() => {
+    $gsap.to('.title', { rotation: 3, x: 100, duration: 1 })
+  })
+</script>
 ```
 
-### Nuxt global page transitions
+## Options
 
-```js
-// nuxt.config.js
+It is very easy to activate additional plugins using the module options.
 
-export default {
-  buildModules: ['nuxt-gsap-module'],
+When a specific plugin is activated, it is instantly available for global use so there is no need to manually import or register plugins.
 
-  // Add global page transition
-  pageTransition: {
-    name: 'page',
-    mode: 'out-in',
-    css: false,
+```ts
+// nuxt.config.ts
 
-    beforeEnter(el) {
-      this.$gsap.set(el, {
-        opacity: 0
-      })
-    },
+{
+  modules: ['@hypernym/nuxt-gsap'],
 
-    enter(el, done) {
-      this.$gsap.to(el, {
-        opacity: 1,
-        duration: 0.5,
-        ease: 'power2.inOut',
-        onComplete: done
-      })
-    },
-
-    leave(el, done) {
-      this.$gsap.to(el, {
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power2.inOut',
-        onComplete: done
-      })
-    }
-  }
-}
-```
-
-### Multiple plugins
-
-After activation, plugins are automatically registered and available globally, so you won’t have to worry about it (applies to all plugins).
-
-```js
-// nuxt.config.js
-
-export default {
   gsap: {
-    extraPlugins: {
-      scrollTo: true,
-      scrollTrigger: true
-    },
-    extraEases: {
-      expoScaleEase: true
-    }
+    // Module options
   }
 }
 ```
 
-```js
-// Usage
-
-export default {
-  mounted() {
-    this.animateOnScroll()
-  },
-
-  methods: {
-    animateOnScroll() {
-      this.$gsap.to(window, { duration: 2, scrollTo: 1000 })
-
-      this.$gsap.to('.box', {
-        x: 500,
-        ease: 'Power1.easeInOut',
-        scrollTrigger: {
-          trigger: '.content',
-          pin: true,
-          end: 'bottom',
-          scrub: true
-        }
-      })
-    }
-  }
-}
-```
-
-## Custom Modifiers
-
-Module allows you to easily animate elements via custom `v-gsap` directive and its modifiers.
-
-### gsap.set()
-
-- Modifier: **`v-gsap.set`**
-- Default: `true`
-
-```html
-<template>
-  <p v-gsap.set="{ x: 100, y: 50 }">NUXT GSAP</p>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.set)
-
-### gsap.to()
-
-- Modifier: **`v-gsap.to`**
-- Default: `true`
-
-```html
-<template>
-  <h1
-    v-gsap.to="{
-      rotation: 360,
-      x: 150,
-      duration: 2
-    }"
-  >
-    NUXT GSAP
-  </h1>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.to)
-
-### gsap.from()
-
-- Modifier: **`v-gsap.from`**
-- Default: `true`
-
-```html
-<template>
-  <span
-    v-gsap.from="{
-      opacity: 0, 
-      x: -200, 
-      duration: 1
-    }"
-  >
-    NUXT GSAP
-  </span>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.from)
-
-### gsap.fromTo()
-
-- Modifier: **`v-gsap.fromTo`**
-- Default: `true`
-
-```html
-<template>
-  <p
-    v-gsap.fromTo="[
-      { opacity: 0, y: -350 },
-      { opacity: 1, y: 0, duration: 3 }
-    ]"
-  >
-    NUXT GSAP
-  </p>
-</template>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.fromTo)
-
-## Module Options
-
-Here are all the `default` options that can be used for customization:
-
-```js
-// nuxt.config.js
-
-export default {
-  gsap: {
-    extraPlugins: {},
-    extraEases: {},
-    clubPlugins: {},
-    registerEffect: [],
-    registerEase: []
-  }
-}
-```
-
-## GSAP's core
-
-### $gsap
+## GSAP Core
 
 - Default: `true`
 
-GSAP's core is `enabled` by default so there is no need for additional configuration.
+GSAP core is enabled by default on module activation.
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
-  buildModules: ['nuxt-gsap-module']
+{
+  modules: ['@hypernym/nuxt-gsap'],
 }
 ```
 
 **Available globally**
 
-```js
+```ts
 // Access GSAP by using
-this.$gsap
+const { $gsap } = useNuxtApp()
 
-// or
-const gsap = this.$gsap
-gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
+$gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 ```
-
-## Register Effect
-
-- Default: `[]`
-
-This option allows you to easily register a global effect. Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
-
-```js
-// nuxt.config.js
-
-export default {
-  gsap: {
-    registerEffect: [
-      {
-        name: 'fadeIn',
-        effect: (targets, config) => {
-          // ...
-        }
-      },
-      {
-        name: 'fadeOut',
-        effect: (targets, config) => {
-          // ...
-        }
-      },
-      {
-        name: 'fadeInOut',
-        effect: (targets, config) => {
-          // ...
-        }
-      }
-    ]
-  }
-}
-```
-
-```js
-// Effects can be accessed as follows
-this.$gsap.effects.fadeIn('.class')
-this.$gsap.effects.fadeOut('#id')
-this.$gsap.effects.fadeInOut(element)
-
-// or
-const gsap = this.$gsap
-gsap.effects.fadeIn('.class')
-gsap.effects.fadeOut('#id')
-gsap.effects.fadeInOut(element)
-
-// or directly on timelines
-let tl = this.$gsap.timeline()
-tl.fadeIn('.class', { duration: 3 })
-  .fadeIn('#id', { duration: 1 }, '+=2')
-  .to('.class2', { x: 100 })
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.registerEffect)
-
-## Register Ease
-
-- Default: `[]`
-
-This option allows you to easily register a global ease.
-
-```js
-// nuxt.config.js
-
-export default {
-  gsap: {
-    registerEase: [
-      {
-        name: 'myEase',
-        ease: progress => {
-          return progress // linear
-        }
-      },
-      {
-        name: 'ease.2',
-        ease: progress => {
-          // ...
-        }
-      },
-      {
-        name: 'customEase.3',
-        ease: progress => {
-          // ...
-        }
-      }
-    ]
-  }
-}
-```
-
-```html
-<!-- index.vue -->
-
-<template>
-  <div>
-    <h1 to="/about" class="title">Custom Title</h1>
-    <p class="text">Custom text...</p>
-  </div>
-</template>
-
-<script>
-  export default {
-    mounted() {
-      this.$gsap.to('.title', { x: 100, ease: 'myEase' })
-      this.$gsap.to('.text', { y: 100, ease: 'ease.2' })
-    }
-  }
-</script>
-```
-
-[More info](https://greensock.com/docs/v3/GSAP/gsap.registerEase)
 
 ## Extra Plugins
 
+Specifies GSAP extra plugins.
+
 ### Flip
 
-- Default: `false`
-- Moved to public downloads (`>=v1.6`)
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     extraPlugins: {
       flip: true
@@ -413,21 +118,21 @@ export default {
 }
 ```
 
-```js
-// Access the plugin by using
-this.$Flip
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Plugins/Flip)
+```ts
+// Access the plugin by using
+const { $Flip } = useNuxtApp()
+```
 
 ### ScrollTrigger
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     extraPlugins: {
       scrollTrigger: true
@@ -436,21 +141,21 @@ export default {
 }
 ```
 
-```js
-// Access the plugin by using
-this.$ScrollTrigger
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Plugins/ScrollTrigger)
+```ts
+// Access the plugin by using
+const { $ScrollTrigger } = useNuxtApp()
+```
 
 ### Observer
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     extraPlugins: {
       observer: true
@@ -459,21 +164,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$Observer
+const { $Observer } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/Observer)
+### ScrollTo
 
-### ScrollToPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     extraPlugins: {
       scrollTo: true
@@ -482,21 +187,21 @@ export default {
 }
 ```
 
-```js
-// Access the plugin by using
-this.$ScrollToPlugin
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Plugins/ScrollToPlugin)
+```ts
+// Access the plugin by using
+const { $ScrollToPlugin } = useNuxtApp()
+```
 
 ### Draggable
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     extraPlugins: {
       draggable: true
@@ -505,21 +210,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$Draggable
+const { $Draggable } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/Draggable)
+### Easel
 
-### EaselPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     extraPlugins: {
       easel: true
@@ -528,21 +233,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$EaselPlugin
+const { $EaselPlugin } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/EaselPlugin)
+### MotionPath
 
-### MotionPathPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     extraPlugins: {
       motionPath: true
@@ -551,21 +256,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$MotionPathPlugin
+const { $MotionPathPlugin } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/MotionPathPlugin)
+### Pixi
 
-### PixiPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     extraPlugins: {
       pixi: true
@@ -574,21 +279,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$PixiPlugin
+const { $PixiPlugin } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/PixiPlugin)
+### Text
 
-### TextPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     extraPlugins: {
       text: true
@@ -597,83 +302,71 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$TextPlugin
+const { $TextPlugin } = useNuxtApp()
 ```
-
-[More info](https://greensock.com/docs/v3/Plugins/TextPlugin)
-
-### CSSRulePlugin
-
-- Deprecated (`>=v1.6`)
-
-CSSRulePlugin has been `deprecated` in favor of using CSS variables which have excellent browser support these days.
-
-GSAP has native support for animating CSS variables, like:
-
-```js
-this.$gsap.to('html', { '--my-variable': 100, duration: 2 })
-```
-
-[More info](https://greensock.com/docs/v3/Plugins/CSSRulePlugin)
 
 ## Extra Eases
 
-### ExpoScaleEase
+Specifies GSAP extra eases.
 
-- Default: `false`
+### ExpoScale
 
-```js
-// nuxt.config.js
+- Default: `undefined`
 
-export default {
+```ts
+// nuxt.config.ts
+
+{
   gsap: {
     extraEases: {
-      expoScaleEase: true
+      expoScale: true
     }
   }
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$ExpoScaleEase
+const { $ExpoScaleEase } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Eases/ExpoScaleEase)
+### Rough
 
-### RoughEase
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     extraEases: {
-      roughEase: true
+      rough: true
     }
   }
 }
 ```
 
-```js
-// Access the plugin by using
-this.$RoughEase
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Eases/RoughEase)
+```ts
+// Access the plugin by using
+const { $RoughEase } = useNuxtApp()
+```
 
 ### SlowMo
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     extraEases: {
       slowMo: true
@@ -682,77 +375,77 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$SlowMo
+const { $SlowMo } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Eases/SlowMo)
+### Custom
 
-### CustomEase
+- Default: `undefined`
 
-- Default: `false`
-- Moved to public downloads (`>=v1.6`)
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     extraEases: {
-      customEase: true
+      custom: true
     }
   }
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$CustomEase
+const { $CustomEase } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Eases/CustomEase)
+## Club Plugins
 
-## Club GreenSock Plugins
+Specifies GSAP premium plugins.
 
-`nuxt-gsap-module` supports Club GreenSock premium plugins. They can be easily activated via `module` settings, just like the free ones.
+This is only available to club members as it requires a paid license.
 
-**Installation**
+Keep in mind that premium plugins must be installed according to the official GSAP guidelines before use.
 
-1. Follow the [official](https://youtu.be/30CivTsqqMY?t=87) instructions and install the `premium` plugins as usual.
-2. After installation, simply activate the desired plugins and that's it, you're ready to go!
+For more information about club plugins, check the official pages.
 
-### DrawSVGPlugin
+### DrawSvg
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     clubPlugins: {
-      drawSVG: true
+      drawSvg: true
     }
   }
 }
 ```
 
-```js
-// Access the plugin by using
-this.$DrawSVGPlugin
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Plugins/DrawSVGPlugin)
+```ts
+// Access the plugin by using
+const { $DrawSVGPlugin } = useNuxtApp()
+```
 
 ### ScrollSmoother
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     clubPlugins: {
       scrollSmoother: true
@@ -761,21 +454,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$ScrollSmoother
+const { $ScrollSmoother } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/ScrollSmoother)
+### GsDevTools
 
-### GSDevTools
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     clubPlugins: {
       gsDevTools: true
@@ -784,21 +477,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$GSDevTools
+const { $GSDevTools } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/GSDevTools)
+### Inertia
 
-### InertiaPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     clubPlugins: {
       inertia: true
@@ -807,44 +500,44 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$InertiaPlugin
+const { $InertiaPlugin } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/InertiaPlugin)
+### MorphSvg
 
-### MorphSVGPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     clubPlugins: {
-      morphSVG: true
+      morphSvg: true
     }
   }
 }
 ```
 
-```js
-// Access the plugin by using
-this.$MorphSVGPlugin
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Plugins/MorphSVGPlugin)
+```ts
+// Access the plugin by using
+const { $MorphSVGPlugin } = useNuxtApp()
+```
 
 ### MotionPathHelper
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     clubPlugins: {
       motionPathHelper: true
@@ -853,44 +546,44 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$MotionPathHelper
+const { $MotionPathHelper } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/MotionPathHelper)
+### Physics2d
 
-### Physics2DPlugin
+- Default: `undefined`
 
-- Default: `false`
-
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
 {
   gsap: {
     clubPlugins: {
-      physics2D: true
+      physics2d: true
     }
   }
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$Physics2DPlugin
+const { $Physics2DPlugin } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/Physics2DPlugin)
+### PhysicsProps
 
-### PhysicsPropsPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     clubPlugins: {
       physicsProps: true
@@ -899,21 +592,21 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$PhysicsPropsPlugin
+const { $PhysicsPropsPlugin } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Plugins/PhysicsPropsPlugin)
+### ScrambleText
 
-### ScrambleTextPlugin
+- Default: `undefined`
 
-- Default: `false`
+```ts
+// nuxt.config.ts
 
-```js
-// nuxt.config.js
-
-export default {
+{
   gsap: {
     clubPlugins: {
       scrambleText: true
@@ -922,21 +615,21 @@ export default {
 }
 ```
 
-```js
-// Access the plugin by using
-this.$ScrambleTextPlugin
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Plugins/ScrambleTextPlugin)
+```ts
+// Access the plugin by using
+const { $ScrambleText } = useNuxtApp()
+```
 
 ### SplitText
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     clubPlugins: {
       splitText: true
@@ -945,21 +638,21 @@ export default {
 }
 ```
 
-```js
-// Access the plugin by using
-this.$SplitText
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Plugins/SplitText)
+```ts
+// Access the plugin by using
+const { $SplitText } = useNuxtApp()
+```
 
 ### CustomBounce
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     clubPlugins: {
       customBounce: true
@@ -968,21 +661,21 @@ export default {
 }
 ```
 
-```js
-// Access the plugin by using
-this.$CustomBounce
-```
+**Available globally**
 
-[More info](https://greensock.com/docs/v3/Eases/CustomBounce)
+```ts
+// Access the plugin by using
+const { $CustomBounce } = useNuxtApp()
+```
 
 ### CustomWiggle
 
-- Default: `false`
+- Default: `undefined`
 
-```js
-// nuxt.config.js
+```ts
+// nuxt.config.ts
 
-export default {
+{
   gsap: {
     clubPlugins: {
       customWiggle: true
@@ -991,23 +684,27 @@ export default {
 }
 ```
 
-```js
+**Available globally**
+
+```ts
 // Access the plugin by using
-this.$CustomWiggle
+const { $CustomWiggle } = useNuxtApp()
 ```
 
-[More info](https://greensock.com/docs/v3/Eases/CustomWiggle)
+## Community
+
+Feel free to use the official [discussions](https://github.com/hypernym-studio/nuxt-gsap/discussions) for any additional questions.
 
 ## License
 
-**GSAP**
+### Gsap Platform
 
-[GSAP License](https://greensock.com/licensing/)
+More details about GSAP licenses can be found in the <a href="https://github.com/greensock/GSAP#license">official</a> repository.
 
-Copyright (c) GreenSock
+### Nuxt Gsap Module
 
-**Nuxt GSAP module**
+Developed in 🇭🇷 Croatia
 
-[MIT License](LICENSE)
+Released under the [MIT](LICENSE.txt) license.
 
-Copyright (c) Ivo Dolenc
+© Hypernym Studio

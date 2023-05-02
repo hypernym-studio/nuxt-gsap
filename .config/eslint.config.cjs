@@ -12,20 +12,9 @@ module.exports = {
     ecmaVersion: 2022
   },
 
-  extends: ['eslint-config-prettier'],
-
-  rules: {
-    'no-debugger': 'warn',
-    'no-console': 'warn',
-
-    'vue/html-self-closing': 'off',
-    'vue/html-indent': 'off',
-
-    'vue/max-attributes-per-line': 'off',
-    'vue/html-closing-bracket-newline': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'vue/singleline-html-element-content-newline': 'off'
-  },
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
 
   ignorePatterns: [
     '.DS_Store',
@@ -37,7 +26,6 @@ module.exports = {
     '.cache',
     '.env',
     'dist',
-    '.code',
     'templates'
   ]
 }
