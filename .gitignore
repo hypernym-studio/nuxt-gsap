@@ -6,4 +6,5 @@ node_modules
 .output
 .cache
 .env
+.npmrc
 dist
