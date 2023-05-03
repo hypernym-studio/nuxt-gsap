@@ -1,9 +1,4 @@
-import {
-  defineNuxtModule,
-  createResolver,
-  addPlugin as nuxtPlugin
-} from '@nuxt/kit'
-import { defu } from 'defu'
+import { defineNuxtModule, addTemplate, addPluginTemplate } from '@nuxt/kit'
 import { name, version, configKey } from '../package.json'
 import type { ModuleOptions } from './types'
 
@@ -20,37 +15,112 @@ export default defineNuxtModule<ModuleOptions>({
   },
 
   setup(options, nuxt) {
-    const { extraPlugins, extraEases, clubPlugins } = options
-    const moduleRuntime = nuxt.options.runtimeConfig.public[
-      configKey
-    ] as ModuleOptions
+    const {
+      extraPlugins: plugins,
+      extraEases: eases,
+      clubPlugins: club
+    } = options
 
-    const { resolve } = createResolver(import.meta.url)
-    nuxt.options.build.transpile.push(resolve('./runtime'))
+    const pluginImport: string[] = []
+    const pluginRegister: string[] = []
+    const pluginType: string[] = []
+    const processClient: string[] = []
 
-    const addPlugin = (
-      name: string,
-      mode: 'all' | 'server' | 'client' = 'all'
-    ) => nuxtPlugin({ src: resolve(`./runtime/plugins/${name}`), mode })
+    const addPlugin = ({
+      name,
+      type_of = true,
+      pkgName
+    }: {
+      name: string
+      type_of?: boolean
+      pkgName?: string
+    }) => {
+      pluginImport.push(
+        `import { ${name} } from 'gsap/${pkgName ? pkgName : name}';`
+      )
+      pluginRegister.push(`${name}`)
+      pluginType.push(`${name}: ${type_of ? `typeof ${name}` : name};`)
+    }
 
-    nuxt.options.runtimeConfig.public[configKey] = defu(moduleRuntime, {
-      extraPlugins,
-      extraEases
+    // Extra Plugins
+    if (plugins?.flip) addPlugin({ name: 'Flip', type_of: false })
+    if (plugins?.scrollTrigger)
+      addPlugin({ name: 'ScrollTrigger', type_of: false })
+    if (plugins?.observer) addPlugin({ name: 'Observer', type_of: false })
+    if (plugins?.scrollTo) addPlugin({ name: 'ScrollToPlugin' })
+    if (plugins?.draggable) addPlugin({ name: 'Draggable', type_of: false })
+    if (plugins?.easel) addPlugin({ name: 'EaselPlugin' })
+    if (plugins?.motionPath) addPlugin({ name: 'MotionPathPlugin' })
+    if (plugins?.pixi) addPlugin({ name: 'PixiPlugin' })
+    if (plugins?.text) addPlugin({ name: 'TextPlugin' })
+
+    // Extra Eases
+    if (eases?.expoScale)
+      addPlugin({ name: 'ExpoScaleEase', pkgName: 'EasePack' })
+    if (eases?.rough) addPlugin({ name: 'RoughEase', pkgName: 'EasePack' })
+    if (eases?.slowMo) addPlugin({ name: 'SlowMo', pkgName: 'EasePack' })
+    if (eases?.custom) addPlugin({ name: 'CustomEase' })
+
+    // Club Plugins
+    if (club?.drawSvg) addPlugin({ name: 'DrawSVGPlugin' })
+    if (club?.scrollSmoother)
+      addPlugin({ name: 'ScrollSmoother', type_of: false })
+    if (club?.gsDevTools) addPlugin({ name: 'GSDevTools', type_of: false })
+    if (club?.inertia) addPlugin({ name: 'InertiaPlugin' })
+    if (club?.morphSvg) addPlugin({ name: 'MorphSVGPlugin' })
+    if (club?.motionPathHelper)
+      addPlugin({ name: 'MotionPathHelper', type_of: false })
+    if (club?.physics2d) addPlugin({ name: 'Physics2DPlugin' })
+    if (club?.physicsProps) addPlugin({ name: 'PhysicsPropsPlugin' })
+    if (club?.scrambleText) addPlugin({ name: 'ScrambleTextPlugin' })
+    if (club?.splitText) addPlugin({ name: 'SplitText', type_of: false })
+    if (club?.customBounce) addPlugin({ name: 'CustomBounce' })
+    if (club?.customWiggle) addPlugin({ name: 'CustomWiggle' })
+
+    // Client mode
+    if (plugins || eases || club) {
+      processClient.push(
+        `if(process.client) {`,
+        `  gsap.registerPlugin(${pluginRegister.join(',')})`,
+        `}`
+      )
+    }
+
+    addTemplate({
+      filename: 'gsapPlugin.d.ts',
+      write: nuxt.options.dev,
+      getContents: () =>
+        [
+          `import { Plugin } from '#app';`,
+          `import { gsap } from 'gsap';`,
+          `${pluginImport.join('\n')}`,
+          `declare const plugin: Plugin<{`,
+          `  gsap: typeof gsap;`,
+          `  ${pluginType.join('\n')}`,
+          `}>;`,
+          `export default plugin;`
+        ].join('\n')
     })
 
-    if (clubPlugins?.drawSvg) addPlugin('drawSvg', 'client')
-    if (clubPlugins?.scrollSmoother) addPlugin('scrollSmoother', 'client')
-    if (clubPlugins?.gsDevTools) addPlugin('gsDevTools', 'client')
-    if (clubPlugins?.inertia) addPlugin('inertia', 'client')
-    if (clubPlugins?.morphSvg) addPlugin('morphSvg', 'client')
-    if (clubPlugins?.motionPathHelper) addPlugin('motionPathHelper', 'client')
-    if (clubPlugins?.physics2d) addPlugin('physics2d', 'client')
-    if (clubPlugins?.physicsProps) addPlugin('physicsProps', 'client')
-    if (clubPlugins?.scrambleText) addPlugin('scrambleText', 'client')
-    if (clubPlugins?.splitText) addPlugin('splitText', 'client')
-    if (clubPlugins?.customBounce) addPlugin('customBounce', 'client')
-    if (clubPlugins?.customWiggle) addPlugin('customWiggle', 'client')
-
-    addPlugin('default')
+    addPluginTemplate({
+      filename: 'gsapPlugin.mjs',
+      write: nuxt.options.dev,
+      getContents: () =>
+        [
+          `import { defineNuxtPlugin } from '#app';`,
+          `import { gsap } from 'gsap';`,
+          `${pluginImport.join('\n')}`,
+          `const plugin = defineNuxtPlugin(() => {`,
+          `  ${processClient.join('\n')}`,
+          `  return {`,
+          `    provide: {`,
+          `      gsap,`,
+          `      ${pluginRegister.join(',\n')}`,
+          `    }`,
+          `  }`,
+          `})`,
+          `export default plugin;`
+        ].join('\n')
+    })
   }
 })
