@@ -61,10 +61,5 @@
   "eslintConfig": {
     "extends": "./.config/eslint.config.cjs"
   },
-  "prettier": "./.config/prettier.config.cjs",
-  "unbuild": {
-    "externals": [
-      "defu"
-    ]
-  }
+  "prettier": "./.config/prettier.config.cjs"
 }
