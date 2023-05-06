@@ -20,13 +20,15 @@ export default defineNuxtModule<ModuleOptions>({
       extraPlugins: plugins,
       extraEases: eases,
       clubPlugins: club,
-      registerEffects: effects
+      registerEffects: regEffects,
+      registerEases: regEases
     } = options
 
     const pluginImport: string[] = []
     const pluginRegister: string[] = []
     const pluginType: string[] = []
     const pluginEffect: string[] = []
+    const pluginEase: string[] = []
     const pluginClient: string[] = []
 
     const addPlugin = ({
@@ -81,22 +83,32 @@ export default defineNuxtModule<ModuleOptions>({
     if (club?.customWiggle) addPlugin({ name: 'CustomWiggle' })
 
     // Global Effects
-    if (effects)
-      effects.forEach(effect =>
+    if (regEffects)
+      regEffects.forEach(effect =>
         pluginEffect.push(`gsap.registerEffect(${stringify(effect)});`)
       )
 
+    // Global Eases
+    if (regEases)
+      regEases.forEach(ease =>
+        pluginEase.push(
+          `gsap.registerEase(${stringify(ease.name)}, ${stringify(ease.ease)});`
+        )
+      )
+
     // Client mode
-    if (plugins || eases || club || effects) {
+    if (plugins || eases || club || regEffects || regEases) {
       const registerPlugin = pluginRegister.length
         ? `gsap.registerPlugin(${pluginRegister.join(',')});`
         : ''
       const registerEffect = pluginEffect.length ? pluginEffect.join('\n') : ''
+      const registerEase = pluginEase.length ? pluginEase.join('\n') : ''
 
       pluginClient.push(
         `if(process.client) {`,
         `  ${registerPlugin}`,
         `  ${registerEffect}`,
+        `  ${registerEase}`,
         `}`
       )
     }
