@@ -7,7 +7,7 @@ GSAP module for Nuxt.
 - Helps you integrate the GSAP animation library
 - Provides a solution for global use
 - Automatically registers plugins after activation
-- Allows you to easily register global effects
+- Allows you to easily register global effects & eases
 - Supports Club GreenSock premium plugins
 - Zero-config setup ready to go
 - TypeScript friendly
@@ -450,6 +450,45 @@ const { $gsap } = useNuxtApp()
 
 $gsap.effects.fade('.class')
 $gsap.effects.slideIn('#id')
+```
+
+## Register Eases
+
+- Type: `object[]`
+- Default: `undefined`
+
+Provides an easy way to register global eases.
+
+Once the ease is registered, it can be accessed directly on the `gsap` animations.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    registerEases: [
+      {
+        name: 'customEase',
+        ease: progress => {
+          return progress // linear
+        }
+      },
+      {
+        name: 'customEase2'
+        // ...
+      }
+    ]
+  }
+}
+```
+
+**Available globally**
+
+```ts
+const { $gsap } = useNuxtApp()
+
+$gsap.to('.class', { x: 100, ease: 'customEase' })
+$gsap.to('#id', { x: 200, ease: 'customEase2' })
 ```
 
 ## Club Plugins

@@ -74,6 +74,31 @@ export interface ModuleOptions {
    * @since 2.2.0
    */
   registerEffects?: object[]
+  /**
+   * Provides an easy way to register global eases.
+   *
+   * Once the ease is registered, it can be accessed directly on the `gsap` animations.
+   *
+   * @example
+   *
+   * ```ts
+   * {
+   *   registerEases: [
+   *     {
+   *       name: 'customEase',
+   *       ease: progress => {
+   *         return progress // linear
+   *       },
+   *     }
+   *   ]
+   * }
+   * ```
+   *
+   * @default undefined
+   *
+   * @since 2.2.0
+   */
+  registerEases?: { name: string; ease: { (progress: number): number } }[]
 }
 
 declare module '@nuxt/schema' {
