@@ -1,4 +1,5 @@
 import { defineNuxtModule, addTemplate, addPluginTemplate } from '@nuxt/kit'
+import { stringify } from './utils'
 import { name, version, configKey } from '../package.json'
 import type { ModuleOptions } from './types'
 
@@ -18,13 +19,15 @@ export default defineNuxtModule<ModuleOptions>({
     const {
       extraPlugins: plugins,
       extraEases: eases,
-      clubPlugins: club
+      clubPlugins: club,
+      registerEffects: effects
     } = options
 
     const pluginImport: string[] = []
     const pluginRegister: string[] = []
     const pluginType: string[] = []
-    const processClient: string[] = []
+    const pluginEffect: string[] = []
+    const pluginClient: string[] = []
 
     const addPlugin = ({
       name,
@@ -77,11 +80,23 @@ export default defineNuxtModule<ModuleOptions>({
     if (club?.customBounce) addPlugin({ name: 'CustomBounce' })
     if (club?.customWiggle) addPlugin({ name: 'CustomWiggle' })
 
+    // Global Effects
+    if (effects)
+      effects.forEach(effect =>
+        pluginEffect.push(`gsap.registerEffect(${stringify(effect)});`)
+      )
+
     // Client mode
-    if (plugins || eases || club) {
-      processClient.push(
+    if (plugins || eases || club || effects) {
+      const registerPlugin = pluginRegister.length
+        ? `gsap.registerPlugin(${pluginRegister.join(',')});`
+        : ''
+      const registerEffect = pluginEffect.length ? pluginEffect.join('\n') : ''
+
+      pluginClient.push(
         `if(process.client) {`,
-        `  gsap.registerPlugin(${pluginRegister.join(',')})`,
+        `  ${registerPlugin}`,
+        `  ${registerEffect}`,
         `}`
       )
     }
@@ -111,7 +126,7 @@ export default defineNuxtModule<ModuleOptions>({
           `import { gsap } from 'gsap';`,
           `${pluginImport.join('\n')}`,
           `const plugin = defineNuxtPlugin(() => {`,
-          `  ${processClient.join('\n')}`,
+          `  ${pluginClient.join('\n')}`,
           `  return {`,
           `    provide: {`,
           `      gsap,`,

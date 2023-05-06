@@ -36,6 +36,44 @@ export interface ModuleOptions {
    * @since 2.0.0
    */
   clubPlugins?: ClubPlugins
+  /**
+   * Provides an easy way to register global effects.
+   *
+   * Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
+   *
+   * To avoid possible linting warnings, use `// @ts-ignore` and `// eslint-disable-next-line` comments.
+   *
+   * @example
+   *
+   * ```ts
+   * {
+   *   registerEffects: [
+   *     {
+   *       name: 'fade',
+   *       defaults: {
+   *         y: -100,
+   *         opacity: 0,
+   *         duration: 2
+   *       },
+   *       // eslint-disable-next-line
+   *       // ts-ignore
+   *       effect: (targets, config) => {
+   *         return gsap.to(targets, {
+   *           y: config.y,
+   *           opacity: config.opacity,
+   *           duration: config.duration
+   *         })
+   *       }
+   *     }
+   *   ]
+   * }
+   * ```
+   *
+   * @default undefined
+   *
+   * @since 2.2.0
+   */
+  registerEffects?: object[]
 }
 
 declare module '@nuxt/schema' {
