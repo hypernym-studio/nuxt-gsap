@@ -6,8 +6,8 @@ GSAP module for Nuxt.
 
 - Helps you integrate the GSAP animation library
 - Provides a solution for global use
-- Enables plugins with a simple boolean option
 - Automatically registers plugins after activation
+- Allows you to easily register global effects
 - Supports Club GreenSock premium plugins
 - Zero-config setup ready to go
 - TypeScript friendly
@@ -35,9 +35,7 @@ That's it! Start developing your app!
 
 ## Module
 
-Nuxt Gsap Module is completely rewritten in TypeScript. It also improves the development experience with detailed descriptions, examples and code auto-completion.
-
-The module comes with a _zero-config_ setup so after activation it automatically adds the GSAP core and it is globally available without additional settings.
+The module comes with a zero-config setup so after activation it automatically adds the GSAP core and it is globally available without additional settings.
 
 ```html
 <!-- layout.vue | page.vue | component.vue -->
@@ -59,9 +57,9 @@ The module comes with a _zero-config_ setup so after activation it automatically
 
 ## Options
 
-It is very easy to activate additional plugins using the module options.
+Nuxt Gsap Module is completely rewritten in TypeScript. It also improves the development experience with detailed descriptions, examples and code auto-completion.
 
-When a specific plugin is activated, it is instantly available for global use so there is no need to manually import or register plugins.
+After plugin activation, it is immediately available globally, so there is no need to manually import or register.
 
 ```ts
 // nuxt.config.ts
@@ -77,8 +75,6 @@ When a specific plugin is activated, it is instantly available for global use so
 
 ## GSAP Core
 
-- Default: `true`
-
 GSAP core is enabled by default on module activation.
 
 ```ts
@@ -92,7 +88,6 @@ GSAP core is enabled by default on module activation.
 **Available globally**
 
 ```ts
-// Access GSAP by using
 const { $gsap } = useNuxtApp()
 
 $gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
@@ -104,6 +99,7 @@ Specifies GSAP extra plugins.
 
 ### Flip
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -121,12 +117,12 @@ Specifies GSAP extra plugins.
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $Flip } = useNuxtApp()
 ```
 
 ### ScrollTrigger
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -144,12 +140,12 @@ const { $Flip } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $ScrollTrigger } = useNuxtApp()
 ```
 
 ### Observer
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -167,12 +163,12 @@ const { $ScrollTrigger } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $Observer } = useNuxtApp()
 ```
 
 ### ScrollTo
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -190,12 +186,12 @@ const { $Observer } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $ScrollToPlugin } = useNuxtApp()
 ```
 
 ### Draggable
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -213,12 +209,12 @@ const { $ScrollToPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $Draggable } = useNuxtApp()
 ```
 
 ### Easel
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -236,12 +232,12 @@ const { $Draggable } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $EaselPlugin } = useNuxtApp()
 ```
 
 ### MotionPath
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -259,12 +255,12 @@ const { $EaselPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $MotionPathPlugin } = useNuxtApp()
 ```
 
 ### Pixi
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -282,12 +278,12 @@ const { $MotionPathPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $PixiPlugin } = useNuxtApp()
 ```
 
 ### Text
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -305,7 +301,6 @@ const { $PixiPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $TextPlugin } = useNuxtApp()
 ```
 
@@ -315,6 +310,7 @@ Specifies GSAP extra eases.
 
 ### ExpoScale
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -332,12 +328,12 @@ Specifies GSAP extra eases.
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $ExpoScaleEase } = useNuxtApp()
 ```
 
 ### Rough
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -355,12 +351,12 @@ const { $ExpoScaleEase } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $RoughEase } = useNuxtApp()
 ```
 
 ### SlowMo
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -378,12 +374,12 @@ const { $RoughEase } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $SlowMo } = useNuxtApp()
 ```
 
 ### Custom
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -401,8 +397,59 @@ const { $SlowMo } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $CustomEase } = useNuxtApp()
+```
+
+## Register Effects
+
+- Type: `object[]`
+- Default: `undefined`
+
+Provides an easy way to register global effects.
+
+Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
+
+To avoid possible linting warnings, use `// eslint-disable-next-line` and `// @ts-ignore` comments.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    registerEffects: [
+      {
+        name: 'fade',
+        defaults: {
+          y: -100,
+          opacity: 0,
+          duration: 2
+        },
+        // eslint-disable-next-line
+        // @ts-ignore
+        effect: (targets, config) => {
+          return gsap.to(targets, {
+            y: config.y,
+            opacity: config.opacity,
+            duration: config.duration
+          })
+        }
+      },
+      {
+        name: 'slideIn'
+        // ...
+      }
+    ]
+  }
+}
+```
+
+**Available globally**
+
+```ts
+const { $gsap } = useNuxtApp()
+
+$gsap.effects.fade('.class')
+$gsap.effects.slideIn('#id')
 ```
 
 ## Club Plugins
@@ -417,6 +464,7 @@ For more information about club plugins, check the official pages.
 
 ### DrawSvg
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -434,12 +482,12 @@ For more information about club plugins, check the official pages.
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $DrawSVGPlugin } = useNuxtApp()
 ```
 
 ### ScrollSmoother
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -457,12 +505,12 @@ const { $DrawSVGPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $ScrollSmoother } = useNuxtApp()
 ```
 
 ### GsDevTools
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -480,12 +528,12 @@ const { $ScrollSmoother } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $GSDevTools } = useNuxtApp()
 ```
 
 ### Inertia
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -503,12 +551,12 @@ const { $GSDevTools } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $InertiaPlugin } = useNuxtApp()
 ```
 
 ### MorphSvg
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -526,12 +574,12 @@ const { $InertiaPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $MorphSVGPlugin } = useNuxtApp()
 ```
 
 ### MotionPathHelper
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -549,12 +597,12 @@ const { $MorphSVGPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $MotionPathHelper } = useNuxtApp()
 ```
 
 ### Physics2d
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -572,12 +620,12 @@ const { $MotionPathHelper } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $Physics2DPlugin } = useNuxtApp()
 ```
 
 ### PhysicsProps
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -595,12 +643,12 @@ const { $Physics2DPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $PhysicsPropsPlugin } = useNuxtApp()
 ```
 
 ### ScrambleText
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -618,12 +666,12 @@ const { $PhysicsPropsPlugin } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $ScrambleText } = useNuxtApp()
 ```
 
 ### SplitText
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -641,12 +689,12 @@ const { $ScrambleText } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $SplitText } = useNuxtApp()
 ```
 
 ### CustomBounce
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -664,12 +712,12 @@ const { $SplitText } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $CustomBounce } = useNuxtApp()
 ```
 
 ### CustomWiggle
 
+- Type: `boolean`
 - Default: `undefined`
 
 ```ts
@@ -687,7 +735,6 @@ const { $CustomBounce } = useNuxtApp()
 **Available globally**
 
 ```ts
-// Access the plugin by using
 const { $CustomWiggle } = useNuxtApp()
 ```
 
