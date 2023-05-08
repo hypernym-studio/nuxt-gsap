@@ -1,5 +1,5 @@
 import { defineNuxtModule, addTemplate, addPluginTemplate } from '@nuxt/kit'
-import { stringify } from './utils'
+import { serialize } from './utils'
 import { name, version, configKey } from '../package.json'
 import type { ModuleOptions } from './types'
 
@@ -85,14 +85,14 @@ export default defineNuxtModule<ModuleOptions>({
     // Global Effects
     if (regEffects)
       regEffects.forEach(effect =>
-        pluginEffect.push(`gsap.registerEffect(${stringify(effect)});`)
+        pluginEffect.push(`gsap.registerEffect(${serialize(effect)});`)
       )
 
     // Global Eases
     if (regEases)
       regEases.forEach(ease =>
         pluginEase.push(
-          `gsap.registerEase(${stringify(ease.name)}, ${stringify(ease.ease)});`
+          `gsap.registerEase(${serialize(ease.name)}, ${serialize(ease.ease)});`
         )
       )
 

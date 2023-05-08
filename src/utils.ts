@@ -1,27 +1,23 @@
 /**
- * Transforms any data type to a string.
+ * Serializes data.
  *
  * @since 2.2.0
  */
-export function stringify(data: unknown): string {
-  if (data === undefined || data === null)
-    return data === undefined ? 'undefined' : 'null'
+export function serialize(data: unknown): string {
+  const type = (v: string) => typeof data === v
 
-  if (typeof data === 'string') return `'${data}'`
+  if (data === null || data === undefined)
+    return data === null ? 'null' : 'undefined'
 
-  if (
-    typeof data === 'number' ||
-    typeof data === 'boolean' ||
-    typeof data === 'function'
-  )
+  if (type('boolean') || type('number') || type('function'))
     return data.toString()
 
-  if (data instanceof Array) return `[${data.map(v => stringify(v)).join(',')}]`
+  if (Array.isArray(data)) return `[${data.map(v => serialize(v)).join(',')}]`
 
-  if (typeof data === 'object')
+  if (type('object'))
     return `{${Object.entries(data)
-      .map(([key, val]) => `${key}: ${stringify(val)}`)
+      .map(([key, val]) => `${key}: ${serialize(val)}`)
       .join(',')}}`
 
-  return JSON.stringify(data)
+  return `'${data}'`
 }
