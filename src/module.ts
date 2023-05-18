@@ -33,27 +33,24 @@ export default defineNuxtModule<ModuleOptions>({
 
     const addPlugin = ({
       name,
-      type_of = true,
       pkgName
     }: {
       name: string
-      type_of?: boolean
       pkgName?: string
     }) => {
       pluginImport.push(
         `import { ${name} } from 'gsap/${pkgName ? pkgName : name}';`
       )
       pluginRegister.push(`${name}`)
-      pluginType.push(`${name}: ${type_of ? `typeof ${name}` : name};`)
+      pluginType.push(`${name}: typeof ${name};`)
     }
 
     // Extra Plugins
-    if (plugins?.flip) addPlugin({ name: 'Flip', type_of: false })
-    if (plugins?.scrollTrigger)
-      addPlugin({ name: 'ScrollTrigger', type_of: false })
-    if (plugins?.observer) addPlugin({ name: 'Observer', type_of: false })
+    if (plugins?.flip) addPlugin({ name: 'Flip' })
+    if (plugins?.scrollTrigger) addPlugin({ name: 'ScrollTrigger' })
+    if (plugins?.observer) addPlugin({ name: 'Observer' })
     if (plugins?.scrollTo) addPlugin({ name: 'ScrollToPlugin' })
-    if (plugins?.draggable) addPlugin({ name: 'Draggable', type_of: false })
+    if (plugins?.draggable) addPlugin({ name: 'Draggable' })
     if (plugins?.easel) addPlugin({ name: 'EaselPlugin' })
     if (plugins?.motionPath) addPlugin({ name: 'MotionPathPlugin' })
     if (plugins?.pixi) addPlugin({ name: 'PixiPlugin' })
@@ -68,17 +65,15 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Club Plugins
     if (club?.drawSvg) addPlugin({ name: 'DrawSVGPlugin' })
-    if (club?.scrollSmoother)
-      addPlugin({ name: 'ScrollSmoother', type_of: false })
-    if (club?.gsDevTools) addPlugin({ name: 'GSDevTools', type_of: false })
+    if (club?.scrollSmoother) addPlugin({ name: 'ScrollSmoother' })
+    if (club?.gsDevTools) addPlugin({ name: 'GSDevTools' })
     if (club?.inertia) addPlugin({ name: 'InertiaPlugin' })
     if (club?.morphSvg) addPlugin({ name: 'MorphSVGPlugin' })
-    if (club?.motionPathHelper)
-      addPlugin({ name: 'MotionPathHelper', type_of: false })
+    if (club?.motionPathHelper) addPlugin({ name: 'MotionPathHelper' })
     if (club?.physics2d) addPlugin({ name: 'Physics2DPlugin' })
     if (club?.physicsProps) addPlugin({ name: 'PhysicsPropsPlugin' })
     if (club?.scrambleText) addPlugin({ name: 'ScrambleTextPlugin' })
-    if (club?.splitText) addPlugin({ name: 'SplitText', type_of: false })
+    if (club?.splitText) addPlugin({ name: 'SplitText' })
     if (club?.customBounce) addPlugin({ name: 'CustomBounce' })
     if (club?.customWiggle) addPlugin({ name: 'CustomWiggle' })
 
