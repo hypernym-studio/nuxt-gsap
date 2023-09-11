@@ -127,7 +127,7 @@ export default defineNuxtModule<ModuleOptions>({
       write: nuxt.options.dev,
       getContents: () =>
         [
-          `import { defineNuxtPlugin } from '#imports';`,
+          `import { defineNuxtPlugin } from '#app';`,
           `import { gsap } from 'gsap';`,
           `${pluginImport.join('\n')}`,
           `const plugin = defineNuxtPlugin(() => {`,
