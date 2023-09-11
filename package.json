@@ -6,9 +6,8 @@
   "license": "MIT",
   "repository": "hypernym-studio/nuxt-gsap",
   "homepage": "https://github.com/hypernym-studio/nuxt-gsap",
-  "configKey": "gsap",
+  "funding": "https://github.com/sponsors/ivodolenc",
   "type": "module",
-  "main": "./dist/module.mjs",
   "types": "./dist/types.d.ts",
   "exports": {
     ".": {
@@ -17,8 +16,7 @@
     }
   },
   "files": [
-    "dist",
-    "!dist/module.cjs"
+    "dist"
   ],
   "keywords": [
     "nuxt",
@@ -32,34 +30,27 @@
   ],
   "scripts": {
     "dev": "nuxt dev playground",
-    "build:module": "nuxt-module-build",
+    "build": "rolli",
     "build:play": "nuxt build playground",
     "generate:play": "nuxt generate playground",
     "preview:play": "nuxt preview playground",
-    "prepublishOnly": "npm run build:module",
-    "format": "prettier --write .",
-    "lint": "eslint .",
-    "fix": "eslint --fix ."
+    "bump": "bummp",
+    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js .",
+    "lint:fix": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js --fix .",
+    "format": "prettier --config .config/prettier.config.js --write .",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "gsap": "^3.11.5"
+    "gsap": "^3.12.2"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "^0.3.1",
-    "@types/node": "^20.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
-    "eslint": "^8.40.0",
-    "eslint-config-prettier": "^8.8.0",
-    "nuxt": "^3.5.0",
-    "prettier": "^2.8.8",
-    "typescript": "^5.0.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "eslintConfig": {
-    "extends": "./.config/eslint.config.cjs"
-  },
-  "prettier": "./.config/prettier.config.cjs"
+    "@types/node": "^20.6.0",
+    "bummp": "^0.2.0",
+    "configshare": "^0.1.5",
+    "eslint": "^8.49.0",
+    "nuxt": "^3.7.1",
+    "prettier": "^3.0.3",
+    "rolli": "^0.6.0",
+    "typescript": "^5.1.6"
+  }
 }

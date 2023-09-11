@@ -1,18 +1,14 @@
 import { defineNuxtModule, addTemplate, addPluginTemplate } from '@nuxt/kit'
-import { serialize } from './utils'
-import { name, version, configKey } from '../package.json'
-import type { ModuleOptions } from './types'
-
-export * from './types'
+import { serialize } from './utils/serialize'
+import { name, version, configKey, compatibility } from './meta'
+import type { ModuleOptions } from './types/module'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
     configKey,
-    compatibility: {
-      nuxt: '>=3.0.0'
-    }
+    compatibility,
   },
 
   setup(options, nuxt) {
@@ -21,7 +17,7 @@ export default defineNuxtModule<ModuleOptions>({
       extraEases: eases,
       clubPlugins: club,
       registerEffects: regEffects,
-      registerEases: regEases
+      registerEases: regEases,
     } = options
 
     const pluginImport: string[] = []
@@ -33,13 +29,13 @@ export default defineNuxtModule<ModuleOptions>({
 
     const addPlugin = ({
       name,
-      pkgName
+      pkgName,
     }: {
       name: string
       pkgName?: string
     }) => {
       pluginImport.push(
-        `import { ${name} } from 'gsap/${pkgName ? pkgName : name}';`
+        `import { ${name} } from 'gsap/${pkgName ? pkgName : name}';`,
       )
       pluginRegister.push(`${name}`)
       pluginType.push(`${name}: typeof ${name};`)
@@ -79,16 +75,18 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Global Effects
     if (regEffects)
-      regEffects.forEach(effect =>
-        pluginEffect.push(`gsap.registerEffect(${serialize(effect)});`)
+      regEffects.forEach((effect) =>
+        pluginEffect.push(`gsap.registerEffect(${serialize(effect)});`),
       )
 
     // Global Eases
     if (regEases)
-      regEases.forEach(ease =>
+      regEases.forEach((ease) =>
         pluginEase.push(
-          `gsap.registerEase(${serialize(ease.name)}, ${serialize(ease.ease)});`
-        )
+          `gsap.registerEase(${serialize(ease.name)}, ${serialize(
+            ease.ease,
+          )});`,
+        ),
       )
 
     // Client mode
@@ -104,7 +102,7 @@ export default defineNuxtModule<ModuleOptions>({
         `  ${registerPlugin}`,
         `  ${registerEffect}`,
         `  ${registerEase}`,
-        `}`
+        `}`,
       )
     }
 
@@ -120,8 +118,8 @@ export default defineNuxtModule<ModuleOptions>({
           `  gsap: typeof gsap;`,
           `  ${pluginType.join('\n')}`,
           `}>;`,
-          `export default plugin;`
-        ].join('\n')
+          `export default plugin;`,
+        ].join('\n'),
     })
 
     addPluginTemplate({
@@ -129,7 +127,7 @@ export default defineNuxtModule<ModuleOptions>({
       write: nuxt.options.dev,
       getContents: () =>
         [
-          `import { defineNuxtPlugin } from '#app';`,
+          `import { defineNuxtPlugin } from '#imports';`,
           `import { gsap } from 'gsap';`,
           `${pluginImport.join('\n')}`,
           `const plugin = defineNuxtPlugin(() => {`,
@@ -141,8 +139,8 @@ export default defineNuxtModule<ModuleOptions>({
           `    }`,
           `  }`,
           `})`,
-          `export default plugin;`
-        ].join('\n')
+          `export default plugin;`,
+        ].join('\n'),
     })
-  }
+  },
 })

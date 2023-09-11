@@ -1,8 +1,3 @@
-/**
- * Club Plugins
- *
- * @since 2.0.0
- */
 export interface ClubPlugins {
   drawSvg?: boolean
   scrollSmoother?: boolean
