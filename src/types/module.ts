@@ -1,10 +1,6 @@
+import type { NuxtModule } from '@nuxt/schema'
 import type { ExtraPlugins, ExtraEases, ClubPlugins } from './options'
 
-/**
- * Module Options
- *
- * @since 2.0.0
- */
 export interface ModuleOptions {
   /**
    * Specifies GSAP extra plugins.
@@ -101,25 +97,6 @@ export interface ModuleOptions {
   registerEases?: { name: string; ease: { (progress: number): number } }[]
 }
 
-declare module '@nuxt/schema' {
-  interface NuxtConfig {
-    /**
-     * Nuxt Gsap Module
-     *
-     * GSAP module for Nuxt.
-     *
-     * @see [Repository](https://github.com/hypernym-studio/nuxt-gsap)
-     */
-    gsap?: ModuleOptions
-  }
-  interface NuxtOptions {
-    /**
-     * Nuxt Gsap Module
-     *
-     * GSAP module for Nuxt.
-     *
-     * @see [Repository](https://github.com/hypernym-studio/nuxt-gsap)
-     */
-    gsap?: ModuleOptions
-  }
-}
+declare const module: NuxtModule<ModuleOptions>
+
+export { module as default }

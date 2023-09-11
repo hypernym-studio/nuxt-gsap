@@ -12,7 +12,7 @@ export function serialize(data: unknown): string {
   if (type('boolean') || type('number') || type('function'))
     return data.toString()
 
-  if (Array.isArray(data)) return `[${data.map(v => serialize(v)).join(',')}]`
+  if (Array.isArray(data)) return `[${data.map((v) => serialize(v)).join(',')}]`
 
   if (type('object'))
     return `{${Object.entries(data)
