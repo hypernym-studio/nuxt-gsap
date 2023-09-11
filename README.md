@@ -422,7 +422,7 @@ To avoid possible linting warnings, use `// eslint-disable-next-line` and `// @t
         defaults: {
           y: -100,
           opacity: 0,
-          duration: 2
+          duration: 2,
         },
         // eslint-disable-next-line
         // @ts-ignore
@@ -430,14 +430,14 @@ To avoid possible linting warnings, use `// eslint-disable-next-line` and `// @t
           return gsap.to(targets, {
             y: config.y,
             opacity: config.opacity,
-            duration: config.duration
+            duration: config.duration,
           })
-        }
+        },
       },
       {
-        name: 'slideIn'
+        name: 'slideIn',
         // ...
-      }
+      },
     ]
   }
 }
@@ -469,14 +469,14 @@ Once the ease is registered, it can be accessed directly on the `gsap` animation
     registerEases: [
       {
         name: 'customEase',
-        ease: progress => {
+        ease: (progress) => {
           return progress // linear
-        }
+        },
       },
       {
-        name: 'customEase2'
+        name: 'customEase2',
         // ...
-      }
+      },
     ]
   }
 }
