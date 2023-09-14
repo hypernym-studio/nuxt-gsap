@@ -1,3 +1,3 @@
-export * from './extraPlugins'
-export * from './extraEases'
-export * from './clubPlugins'
+export * from './extra-plugins'
+export * from './extra-eases'
+export * from './club-plugins'
