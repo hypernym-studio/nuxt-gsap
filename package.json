@@ -48,7 +48,7 @@
     "bummp": "^0.2.0",
     "configshare": "^0.1.5",
     "eslint": "^8.49.0",
-    "nuxt": "^3.7.1",
+    "nuxt": "^3.7.3",
     "prettier": "^3.0.3",
     "rolli": "^0.6.0",
     "typescript": "^5.1.6"
