@@ -93,7 +93,112 @@ const { $gsap } = useNuxtApp()
 $gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
 ```
 
+### useGsap
+
+Provides the main `gsap` core as custom composable.
+
+It is automatically enabled with the [`composables: true`](#composables) option.
+
+```html
+<template>
+  <h1 class="title">Nuxt Gsap Module</h1>
+</template>
+
+<script setup lang="ts">
+  useGsap.to('.title', { rotation: 3, x: 100, duration: 1 })
+</script>
+```
+
+```ts
+// Explicit import (optional)
+import { useGsap } from '#gsap'
+```
+
+## Provide
+
+- Type: `boolean`
+- Default: `true`
+
+Provides the main `$gsap` core with plugins globally.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    provide: true
+  }
+}
+```
+
+**Available globally**
+
+```ts
+const { $gsap } = useNuxtApp()
+
+$gsap.to('.class', { rotation: 3, x: 100, duration: 1 })
+```
+
+## Composables
+
+- Type: `boolean`
+- Default: `undefined`
+
+Specifies custom composables.
+
+If enabled, allows the use of custom composables.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true
+  }
+}
+```
+
+When using only composables, it is recommended to disable global import.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true
+    provide: false // global import
+  }
+}
+```
+
+## Auto Import
+
+- Type: `boolean`
+- Default: `true`
+
+Specifies the `auto-import` feature.
+
+If enabled, the composables will be available globally so there is no need to import them manually.
+
+Since this is an opinionated feature, you can disable global `auto-import` and use explicit import only where you need it.
+
+> [!NOTE]\
+> Works only if the option `composables: true` is enabled.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    autoImport: false
+  }
+}
+```
+
 ## Extra Plugins
+
+- Type: `object`
+- Default: `undefined`
 
 Specifies GSAP extra plugins.
 
@@ -306,6 +411,9 @@ const { $TextPlugin } = useNuxtApp()
 
 ## Extra Eases
 
+- Type: `object`
+- Default: `undefined`
+
 Specifies GSAP extra eases.
 
 ### ExpoScale
@@ -492,6 +600,9 @@ $gsap.to('#id', { x: 200, ease: 'customEase2' })
 ```
 
 ## Club Plugins
+
+- Type: `object`
+- Default: `undefined`
 
 Specifies GSAP premium plugins.
 

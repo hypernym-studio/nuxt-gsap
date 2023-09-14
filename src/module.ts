@@ -1,4 +1,10 @@
-import { defineNuxtModule, addTemplate, addPluginTemplate } from '@nuxt/kit'
+import {
+  defineNuxtModule,
+  createResolver,
+  addTemplate,
+  addPluginTemplate,
+  addImports,
+} from '@nuxt/kit'
 import { serialize } from './utils/serialize'
 import { name, version, configKey, compatibility } from './meta'
 import type { ModuleOptions } from './types/module'
@@ -11,8 +17,16 @@ export default defineNuxtModule<ModuleOptions>({
     compatibility,
   },
 
+  defaults: {
+    provide: true,
+    autoImport: true,
+  },
+
   setup(options, nuxt) {
     const {
+      provide,
+      composables,
+      autoImport,
       extraPlugins: plugins,
       extraEases: eases,
       clubPlugins: club,
@@ -106,41 +120,55 @@ export default defineNuxtModule<ModuleOptions>({
       )
     }
 
-    addTemplate({
-      filename: 'gsapPlugin.d.ts',
-      write: nuxt.options.dev,
-      getContents: () =>
-        [
-          `import { Plugin } from '#app';`,
-          `import { gsap } from 'gsap';`,
-          `${pluginImport.join('\n')}`,
-          `declare const plugin: Plugin<{`,
-          `  gsap: typeof gsap;`,
-          `  ${pluginType.join('\n')}`,
-          `}>;`,
-          `export default plugin;`,
-        ].join('\n'),
-    })
+    if (provide) {
+      addTemplate({
+        filename: 'gsapPlugin.d.ts',
+        write: nuxt.options.dev,
+        getContents: () =>
+          [
+            `import { Plugin } from '#app';`,
+            `import { gsap } from 'gsap';`,
+            `${pluginImport.join('\n')}`,
+            `declare const plugin: Plugin<{`,
+            `  gsap: typeof gsap;`,
+            `  ${pluginType.join('\n')}`,
+            `}>;`,
+            `export default plugin;`,
+          ].join('\n'),
+      })
 
-    addPluginTemplate({
-      filename: 'gsapPlugin.mjs',
-      write: nuxt.options.dev,
-      getContents: () =>
-        [
-          `import { defineNuxtPlugin } from '#app';`,
-          `import { gsap } from 'gsap';`,
-          `${pluginImport.join('\n')}`,
-          `const plugin = defineNuxtPlugin(() => {`,
-          `  ${pluginClient.join('\n')}`,
-          `  return {`,
-          `    provide: {`,
-          `      gsap,`,
-          `      ${pluginRegister.join(',\n')}`,
-          `    }`,
-          `  }`,
-          `})`,
-          `export default plugin;`,
-        ].join('\n'),
-    })
+      addPluginTemplate({
+        filename: 'gsapPlugin.mjs',
+        write: nuxt.options.dev,
+        getContents: () =>
+          [
+            `import { defineNuxtPlugin } from '#app';`,
+            `import { gsap } from 'gsap';`,
+            `${pluginImport.join('\n')}`,
+            `const plugin = defineNuxtPlugin(() => {`,
+            `  ${pluginClient.join('\n')}`,
+            `  return {`,
+            `    provide: {`,
+            `      gsap,`,
+            `      ${pluginRegister.join(',\n')}`,
+            `    }`,
+            `  }`,
+            `})`,
+            `export default plugin;`,
+          ].join('\n'),
+      })
+    }
+
+    if (composables) {
+      const { resolve } = createResolver(import.meta.url)
+      nuxt.options.build.transpile.push(resolve('./runtime'))
+      const composablesImport = resolve('./runtime/composables')
+
+      nuxt.options.alias[`#${configKey}`] = composablesImport
+
+      if (autoImport) {
+        addImports([{ name: 'useGsap', from: composablesImport }])
+      }
+    }
   },
 })
