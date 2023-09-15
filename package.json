@@ -1,6 +1,6 @@
 {
   "name": "@hypernym/nuxt-gsap",
-  "version": "2.2.4",
+  "version": "2.3.0",
   "author": "Hypernym Studio",
   "description": "GSAP module for Nuxt.",
   "license": "MIT",
