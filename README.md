@@ -6,6 +6,7 @@ GSAP module for Nuxt.
 
 - Helps you integrate the GSAP animation library
 - Provides a solution for global use
+- Supports custom composables
 - Automatically registers plugins after activation
 - Allows you to easily register global effects & eases
 - Supports Club GreenSock premium plugins
@@ -31,7 +32,7 @@ npm i -D @hypernym/nuxt-gsap
 }
 ```
 
-That's it! Start developing your app!
+That's it!
 
 ## Module
 
@@ -75,6 +76,10 @@ After plugin activation, it is immediately available globally, so there is no ne
 
 ## GSAP Core
 
+It can be used via a `provide` helper that will be available globally or via a custom `composable` that you can import where you need it.
+
+### Provide
+
 GSAP core is enabled by default on module activation.
 
 ```ts
@@ -87,19 +92,51 @@ GSAP core is enabled by default on module activation.
 
 **Available globally**
 
-```ts
-const { $gsap } = useNuxtApp()
+```html
+<script setup lang="ts">
+  const { $gsap } = useNuxtApp()
 
-$gsap.to('.box', { rotation: 27, x: 100, duration: 1 })
+  onMounted(() => {
+    $gsap.to('.title', { rotation: 3, x: 100, duration: 1 })
+  })
+</script>
 ```
 
-### useGsap
+To disable the _provide_ helper completely, set it to `false`.
 
-Provides the main `gsap` core as custom composable.
+```ts
+// nuxt.config.ts
 
-It is automatically enabled with the [`composables: true`](#composables) option.
+{
+  gsap: {
+    provide: false
+  }
+}
+```
+
+### Composable
+
+Imports the main `gsap` core as custom composable.
+
+To enable custom [_composables_](#composables), set it to `true`:
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true
+  }
+}
+```
+
+#### useGsap
+
+- Custom composable
 
 ```html
+<!-- layout.vue | page.vue | component.vue -->
+
 <template>
   <h1 class="title">Nuxt Gsap Module</h1>
 </template>
@@ -158,7 +195,9 @@ If enabled, allows the use of custom composables.
 }
 ```
 
-When using only composables, it is recommended to disable global import.
+It is possible to use _provide_ helper and _composables_ in combination or separately, depending on preference.
+
+When using _only_ composables, it is recommended to disable global import.
 
 ```ts
 // nuxt.config.ts
@@ -195,6 +234,97 @@ Since this is an opinionated feature, you can disable global `auto-import` and u
 }
 ```
 
+## Register Effects
+
+- Type: `object[]`
+- Default: `undefined`
+
+Provides an easy way to register global effects.
+
+Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
+
+To avoid possible linting warnings, use `// eslint-disable-next-line` and `// @ts-ignore` comments.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    registerEffects: [
+      {
+        name: 'fade',
+        defaults: {
+          y: -100,
+          opacity: 0,
+          duration: 2,
+        },
+        // eslint-disable-next-line
+        // @ts-ignore
+        effect: (targets, config) => {
+          return gsap.to(targets, {
+            y: config.y,
+            opacity: config.opacity,
+            duration: config.duration,
+          })
+        },
+      },
+      {
+        name: 'slideIn',
+        // ...
+      },
+    ]
+  }
+}
+```
+
+**Available globally**
+
+```ts
+const { $gsap } = useNuxtApp()
+
+$gsap.effects.fade('.class')
+$gsap.effects.slideIn('#id')
+```
+
+## Register Eases
+
+- Type: `object[]`
+- Default: `undefined`
+
+Provides an easy way to register global eases.
+
+Once the ease is registered, it can be accessed directly on the `gsap` animations.
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    registerEases: [
+      {
+        name: 'customEase',
+        ease: (progress) => {
+          return progress // linear
+        },
+      },
+      {
+        name: 'customEase2',
+        // ...
+      },
+    ]
+  }
+}
+```
+
+**Available globally**
+
+```ts
+const { $gsap } = useNuxtApp()
+
+$gsap.to('.class', { x: 100, ease: 'customEase' })
+$gsap.to('#id', { x: 200, ease: 'customEase2' })
+```
+
 ## Extra Plugins
 
 - Type: `object`
@@ -225,6 +355,34 @@ Specifies GSAP extra plugins.
 const { $Flip } = useNuxtApp()
 ```
 
+### useFlip
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      flip: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useFlip
+```
+
+```ts
+// Explicit import (optional)
+import { useFlip } from '#gsap'
+```
+
 ### ScrollTrigger
 
 - Type: `boolean`
@@ -246,6 +404,34 @@ const { $Flip } = useNuxtApp()
 
 ```ts
 const { $ScrollTrigger } = useNuxtApp()
+```
+
+### useScrollTrigger
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      scrollTrigger: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useScrollTrigger
+```
+
+```ts
+// Explicit import (optional)
+import { useScrollTrigger } from '#gsap'
 ```
 
 ### Observer
@@ -271,6 +457,34 @@ const { $ScrollTrigger } = useNuxtApp()
 const { $Observer } = useNuxtApp()
 ```
 
+### useObserver
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      observer: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useObserver
+```
+
+```ts
+// Explicit import (optional)
+import { useObserver } from '#gsap'
+```
+
 ### ScrollTo
 
 - Type: `boolean`
@@ -292,6 +506,34 @@ const { $Observer } = useNuxtApp()
 
 ```ts
 const { $ScrollToPlugin } = useNuxtApp()
+```
+
+### useScrollToPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      scrollTo: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useScrollToPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { useScrollToPlugin } from '#gsap'
 ```
 
 ### Draggable
@@ -317,6 +559,34 @@ const { $ScrollToPlugin } = useNuxtApp()
 const { $Draggable } = useNuxtApp()
 ```
 
+### useDraggable
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      draggable: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useDraggable
+```
+
+```ts
+// Explicit import (optional)
+import { useDraggable } from '#gsap'
+```
+
 ### Easel
 
 - Type: `boolean`
@@ -338,6 +608,34 @@ const { $Draggable } = useNuxtApp()
 
 ```ts
 const { $EaselPlugin } = useNuxtApp()
+```
+
+### useEaselPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      easel: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useEaselPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { useEaselPlugin } from '#gsap'
 ```
 
 ### MotionPath
@@ -363,6 +661,34 @@ const { $EaselPlugin } = useNuxtApp()
 const { $MotionPathPlugin } = useNuxtApp()
 ```
 
+### useMotionPathPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      motionPath: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useMotionPathPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { useMotionPathPlugin } from '#gsap'
+```
+
 ### Pixi
 
 - Type: `boolean`
@@ -386,6 +712,34 @@ const { $MotionPathPlugin } = useNuxtApp()
 const { $PixiPlugin } = useNuxtApp()
 ```
 
+### usePixiPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      pixi: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+usePixiPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { usePixiPlugin } from '#gsap'
+```
+
 ### Text
 
 - Type: `boolean`
@@ -407,6 +761,34 @@ const { $PixiPlugin } = useNuxtApp()
 
 ```ts
 const { $TextPlugin } = useNuxtApp()
+```
+
+### useTextPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraPlugins: {
+      text: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useTextPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { useTextPlugin } from '#gsap'
 ```
 
 ## Extra Eases
@@ -506,97 +888,6 @@ const { $SlowMo } = useNuxtApp()
 
 ```ts
 const { $CustomEase } = useNuxtApp()
-```
-
-## Register Effects
-
-- Type: `object[]`
-- Default: `undefined`
-
-Provides an easy way to register global effects.
-
-Once the effect is registered, it can be accessed directly on the `gsap.effects` object.
-
-To avoid possible linting warnings, use `// eslint-disable-next-line` and `// @ts-ignore` comments.
-
-```ts
-// nuxt.config.ts
-
-{
-  gsap: {
-    registerEffects: [
-      {
-        name: 'fade',
-        defaults: {
-          y: -100,
-          opacity: 0,
-          duration: 2,
-        },
-        // eslint-disable-next-line
-        // @ts-ignore
-        effect: (targets, config) => {
-          return gsap.to(targets, {
-            y: config.y,
-            opacity: config.opacity,
-            duration: config.duration,
-          })
-        },
-      },
-      {
-        name: 'slideIn',
-        // ...
-      },
-    ]
-  }
-}
-```
-
-**Available globally**
-
-```ts
-const { $gsap } = useNuxtApp()
-
-$gsap.effects.fade('.class')
-$gsap.effects.slideIn('#id')
-```
-
-## Register Eases
-
-- Type: `object[]`
-- Default: `undefined`
-
-Provides an easy way to register global eases.
-
-Once the ease is registered, it can be accessed directly on the `gsap` animations.
-
-```ts
-// nuxt.config.ts
-
-{
-  gsap: {
-    registerEases: [
-      {
-        name: 'customEase',
-        ease: (progress) => {
-          return progress // linear
-        },
-      },
-      {
-        name: 'customEase2',
-        // ...
-      },
-    ]
-  }
-}
-```
-
-**Available globally**
-
-```ts
-const { $gsap } = useNuxtApp()
-
-$gsap.to('.class', { x: 100, ease: 'customEase' })
-$gsap.to('#id', { x: 200, ease: 'customEase2' })
 ```
 
 ## Club Plugins
