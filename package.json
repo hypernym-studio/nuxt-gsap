@@ -44,7 +44,7 @@
     "gsap": "^3.12.2"
   },
   "devDependencies": {
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.6.1",
     "bummp": "^0.2.0",
     "configshare": "^0.1.5",
     "eslint": "^8.49.0",
