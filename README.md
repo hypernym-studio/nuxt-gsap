@@ -1038,6 +1038,34 @@ For more information about club plugins, check the official pages.
 const { $DrawSVGPlugin } = useNuxtApp()
 ```
 
+### useDrawSVGPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      drawSvg: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useDrawSVGPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { useDrawSVGPlugin } from '#gsap'
+```
+
 ### ScrollSmoother
 
 - Type: `boolean`
@@ -1059,6 +1087,34 @@ const { $DrawSVGPlugin } = useNuxtApp()
 
 ```ts
 const { $ScrollSmoother } = useNuxtApp()
+```
+
+### useScrollSmoother
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      scrollSmoother: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useScrollSmoother
+```
+
+```ts
+// Explicit import (optional)
+import { useScrollSmoother } from '#gsap'
 ```
 
 ### GsDevTools
@@ -1084,6 +1140,34 @@ const { $ScrollSmoother } = useNuxtApp()
 const { $GSDevTools } = useNuxtApp()
 ```
 
+### useGSDevTools
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      gsDevTools: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useGSDevTools
+```
+
+```ts
+// Explicit import (optional)
+import { useGSDevTools } from '#gsap'
+```
+
 ### Inertia
 
 - Type: `boolean`
@@ -1105,6 +1189,34 @@ const { $GSDevTools } = useNuxtApp()
 
 ```ts
 const { $InertiaPlugin } = useNuxtApp()
+```
+
+### useInertiaPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      inertia: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useInertiaPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { useInertiaPlugin } from '#gsap'
 ```
 
 ### MorphSvg
@@ -1130,6 +1242,34 @@ const { $InertiaPlugin } = useNuxtApp()
 const { $MorphSVGPlugin } = useNuxtApp()
 ```
 
+### useMorphSVGPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      morphSvg: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useMorphSVGPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { useMorphSVGPlugin } from '#gsap'
+```
+
 ### MotionPathHelper
 
 - Type: `boolean`
@@ -1151,6 +1291,34 @@ const { $MorphSVGPlugin } = useNuxtApp()
 
 ```ts
 const { $MotionPathHelper } = useNuxtApp()
+```
+
+### useMotionPathHelper
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      motionPathHelper: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useMotionPathHelper
+```
+
+```ts
+// Explicit import (optional)
+import { useMotionPathHelper } from '#gsap'
 ```
 
 ### Physics2d
@@ -1176,6 +1344,34 @@ const { $MotionPathHelper } = useNuxtApp()
 const { $Physics2DPlugin } = useNuxtApp()
 ```
 
+### usePhysics2DPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      physics2d: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+usePhysics2DPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { usePhysics2DPlugin } from '#gsap'
+```
+
 ### PhysicsProps
 
 - Type: `boolean`
@@ -1197,6 +1393,34 @@ const { $Physics2DPlugin } = useNuxtApp()
 
 ```ts
 const { $PhysicsPropsPlugin } = useNuxtApp()
+```
+
+### usePhysicsPropsPlugin
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      physicsProps: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+usePhysicsPropsPlugin
+```
+
+```ts
+// Explicit import (optional)
+import { usePhysicsPropsPlugin } from '#gsap'
 ```
 
 ### ScrambleText
@@ -1222,6 +1446,34 @@ const { $PhysicsPropsPlugin } = useNuxtApp()
 const { $ScrambleText } = useNuxtApp()
 ```
 
+### useScrambleText
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      scrambleText: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useScrambleText
+```
+
+```ts
+// Explicit import (optional)
+import { useScrambleText } from '#gsap'
+```
+
 ### SplitText
 
 - Type: `boolean`
@@ -1243,6 +1495,34 @@ const { $ScrambleText } = useNuxtApp()
 
 ```ts
 const { $SplitText } = useNuxtApp()
+```
+
+### useSplitText
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      splitText: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useSplitText
+```
+
+```ts
+// Explicit import (optional)
+import { useSplitText } from '#gsap'
 ```
 
 ### CustomBounce
@@ -1268,6 +1548,34 @@ const { $SplitText } = useNuxtApp()
 const { $CustomBounce } = useNuxtApp()
 ```
 
+### useCustomBounce
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      customBounce: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useCustomBounce
+```
+
+```ts
+// Explicit import (optional)
+import { useCustomBounce } from '#gsap'
+```
+
 ### CustomWiggle
 
 - Type: `boolean`
@@ -1289,6 +1597,34 @@ const { $CustomBounce } = useNuxtApp()
 
 ```ts
 const { $CustomWiggle } = useNuxtApp()
+```
+
+### useCustomWiggle
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      customWiggle: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useCustomWiggle
+```
+
+```ts
+// Explicit import (optional)
+import { useCustomWiggle } from '#gsap'
 ```
 
 ## Community

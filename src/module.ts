@@ -248,6 +248,58 @@ export default defineNuxtModule<ModuleOptions>({
         if (autoImport) addImports({ name: 'useCustomEase', from: alias })
       }
 
+      // Club Plugins
+      if (club?.drawSvg) {
+        addComposable({ name: 'DrawSVGPlugin' })
+        if (autoImport) addImports({ name: 'useDrawSVGPlugin', from: alias })
+      }
+      if (club?.scrollSmoother) {
+        addComposable({ name: 'ScrollSmoother' })
+        if (autoImport) addImports({ name: 'useScrollSmoother', from: alias })
+      }
+      if (club?.gsDevTools) {
+        addComposable({ name: 'GSDevTools' })
+        if (autoImport) addImports({ name: 'useGSDevTools', from: alias })
+      }
+      if (club?.inertia) {
+        addComposable({ name: 'InertiaPlugin' })
+        if (autoImport) addImports({ name: 'useInertiaPlugin', from: alias })
+      }
+      if (club?.morphSvg) {
+        addComposable({ name: 'MorphSVGPlugin' })
+        if (autoImport) addImports({ name: 'useMorphSVGPlugin', from: alias })
+      }
+      if (club?.motionPathHelper) {
+        addComposable({ name: 'MotionPathHelper' })
+        if (autoImport) addImports({ name: 'useMotionPathHelper', from: alias })
+      }
+      if (club?.physics2d) {
+        addComposable({ name: 'Physics2DPlugin' })
+        if (autoImport) addImports({ name: 'usePhysics2DPlugin', from: alias })
+      }
+      if (club?.physicsProps) {
+        addComposable({ name: 'PhysicsPropsPlugin' })
+        if (autoImport)
+          addImports({ name: 'usePhysicsPropsPlugin', from: alias })
+      }
+      if (club?.scrambleText) {
+        addComposable({ name: 'ScrambleTextPlugin' })
+        if (autoImport)
+          addImports({ name: 'useScrambleTextPlugin', from: alias })
+      }
+      if (club?.splitText) {
+        addComposable({ name: 'SplitText' })
+        if (autoImport) addImports({ name: 'useSplitText', from: alias })
+      }
+      if (club?.customBounce) {
+        addComposable({ name: 'CustomBounce' })
+        if (autoImport) addImports({ name: 'useCustomBounce', from: alias })
+      }
+      if (club?.customWiggle) {
+        addComposable({ name: 'CustomWiggle' })
+        if (autoImport) addImports({ name: 'useCustomWiggle', from: alias })
+      }
+
       addTemplate({
         filename: `${templateName}.d.ts`,
         write: true,
