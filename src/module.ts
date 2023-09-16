@@ -65,13 +65,13 @@ export default defineNuxtModule<ModuleOptions>({
 
       const addPlugin = ({
         name,
-        pkgName,
+        subpath,
       }: {
         name: string
-        pkgName?: string
+        subpath?: string
       }) => {
         pluginImport.push(
-          `import { ${name} } from 'gsap/${pkgName ? pkgName : name}';`,
+          `import { ${name} } from 'gsap/${subpath ? subpath : name}';`,
         )
         pluginRegister.push(`${name}`)
         pluginType.push(`${name}: typeof ${name};`)
@@ -90,9 +90,9 @@ export default defineNuxtModule<ModuleOptions>({
 
       // Extra Eases
       if (eases?.expoScale)
-        addPlugin({ name: 'ExpoScaleEase', pkgName: 'EasePack' })
-      if (eases?.rough) addPlugin({ name: 'RoughEase', pkgName: 'EasePack' })
-      if (eases?.slowMo) addPlugin({ name: 'SlowMo', pkgName: 'EasePack' })
+        addPlugin({ name: 'ExpoScaleEase', subpath: 'EasePack' })
+      if (eases?.rough) addPlugin({ name: 'RoughEase', subpath: 'EasePack' })
+      if (eases?.slowMo) addPlugin({ name: 'SlowMo', subpath: 'EasePack' })
       if (eases?.custom) addPlugin({ name: 'CustomEase' })
 
       // Club Plugins
@@ -173,13 +173,13 @@ export default defineNuxtModule<ModuleOptions>({
 
       const addComposable = ({
         name,
-        pkgName,
+        subpath,
       }: {
         name: string
-        pkgName?: string
+        subpath?: string
       }) => {
         pluginImport.push(
-          `import { ${name} } from 'gsap/${pkgName ? pkgName : name}';`,
+          `import { ${name} } from 'gsap/${subpath ? subpath : name}';`,
         )
         pluginRegister.push(`${name}`)
         pluginDeclare.push(`export const use${name} = ${name};`)
@@ -228,6 +228,24 @@ export default defineNuxtModule<ModuleOptions>({
       if (plugins?.text) {
         addComposable({ name: 'TextPlugin' })
         if (autoImport) addImports({ name: 'useTextPlugin', from: alias })
+      }
+
+      // Extra Eases
+      if (eases?.expoScale) {
+        addComposable({ name: 'ExpoScaleEase', subpath: 'EasePack' })
+        if (autoImport) addImports({ name: 'useExpoScaleEase', from: alias })
+      }
+      if (eases?.rough) {
+        addComposable({ name: 'RoughEase', subpath: 'EasePack' })
+        if (autoImport) addImports({ name: 'useRoughEase', from: alias })
+      }
+      if (eases?.slowMo) {
+        addComposable({ name: 'SlowMo', subpath: 'EasePack' })
+        if (autoImport) addImports({ name: 'useSlowMo', from: alias })
+      }
+      if (eases?.custom) {
+        addComposable({ name: 'CustomEase' })
+        if (autoImport) addImports({ name: 'useCustomEase', from: alias })
       }
 
       addTemplate({
