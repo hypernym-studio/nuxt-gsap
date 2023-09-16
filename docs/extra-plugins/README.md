@@ -5,7 +5,7 @@
 
 Specifies GSAP extra plugins.
 
-### Flip
+## Flip
 
 - Type: `boolean`
 - Default: `undefined`
@@ -28,7 +28,7 @@ Specifies GSAP extra plugins.
 const { $Flip } = useNuxtApp()
 ```
 
-### useFlip
+## useFlip
 
 - Custom composable
 
@@ -56,7 +56,7 @@ useFlip
 import { useFlip } from '#gsap'
 ```
 
-### ScrollTrigger
+## ScrollTrigger
 
 - Type: `boolean`
 - Default: `undefined`
@@ -79,7 +79,7 @@ import { useFlip } from '#gsap'
 const { $ScrollTrigger } = useNuxtApp()
 ```
 
-### useScrollTrigger
+## useScrollTrigger
 
 - Custom composable
 
@@ -107,7 +107,7 @@ useScrollTrigger
 import { useScrollTrigger } from '#gsap'
 ```
 
-### Observer
+## Observer
 
 - Type: `boolean`
 - Default: `undefined`
@@ -130,7 +130,7 @@ import { useScrollTrigger } from '#gsap'
 const { $Observer } = useNuxtApp()
 ```
 
-### useObserver
+## useObserver
 
 - Custom composable
 
@@ -158,7 +158,7 @@ useObserver
 import { useObserver } from '#gsap'
 ```
 
-### ScrollTo
+## ScrollTo
 
 - Type: `boolean`
 - Default: `undefined`
@@ -181,7 +181,7 @@ import { useObserver } from '#gsap'
 const { $ScrollToPlugin } = useNuxtApp()
 ```
 
-### useScrollToPlugin
+## useScrollToPlugin
 
 - Custom composable
 
@@ -209,7 +209,7 @@ useScrollToPlugin
 import { useScrollToPlugin } from '#gsap'
 ```
 
-### Draggable
+## Draggable
 
 - Type: `boolean`
 - Default: `undefined`
@@ -232,7 +232,7 @@ import { useScrollToPlugin } from '#gsap'
 const { $Draggable } = useNuxtApp()
 ```
 
-### useDraggable
+## useDraggable
 
 - Custom composable
 
@@ -260,7 +260,7 @@ useDraggable
 import { useDraggable } from '#gsap'
 ```
 
-### Easel
+## Easel
 
 - Type: `boolean`
 - Default: `undefined`
@@ -283,7 +283,7 @@ import { useDraggable } from '#gsap'
 const { $EaselPlugin } = useNuxtApp()
 ```
 
-### useEaselPlugin
+## useEaselPlugin
 
 - Custom composable
 
@@ -311,7 +311,7 @@ useEaselPlugin
 import { useEaselPlugin } from '#gsap'
 ```
 
-### MotionPath
+## MotionPath
 
 - Type: `boolean`
 - Default: `undefined`
@@ -334,7 +334,7 @@ import { useEaselPlugin } from '#gsap'
 const { $MotionPathPlugin } = useNuxtApp()
 ```
 
-### useMotionPathPlugin
+## useMotionPathPlugin
 
 - Custom composable
 
@@ -362,7 +362,7 @@ useMotionPathPlugin
 import { useMotionPathPlugin } from '#gsap'
 ```
 
-### Pixi
+## Pixi
 
 - Type: `boolean`
 - Default: `undefined`
@@ -385,7 +385,7 @@ import { useMotionPathPlugin } from '#gsap'
 const { $PixiPlugin } = useNuxtApp()
 ```
 
-### usePixiPlugin
+## usePixiPlugin
 
 - Custom composable
 
@@ -413,7 +413,7 @@ usePixiPlugin
 import { usePixiPlugin } from '#gsap'
 ```
 
-### Text
+## Text
 
 - Type: `boolean`
 - Default: `undefined`
@@ -436,7 +436,7 @@ import { usePixiPlugin } from '#gsap'
 const { $TextPlugin } = useNuxtApp()
 ```
 
-### useTextPlugin
+## useTextPlugin
 
 - Custom composable
 

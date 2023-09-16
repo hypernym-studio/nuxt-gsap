@@ -5,7 +5,7 @@
 
 Specifies GSAP extra eases.
 
-### ExpoScale
+## ExpoScale
 
 - Type: `boolean`
 - Default: `undefined`
@@ -28,7 +28,7 @@ Specifies GSAP extra eases.
 const { $ExpoScaleEase } = useNuxtApp()
 ```
 
-### useExpoScaleEase
+## useExpoScaleEase
 
 - Custom composable
 
@@ -56,7 +56,7 @@ useExpoScaleEase
 import { useExpoScaleEase } from '#gsap'
 ```
 
-### Rough
+## Rough
 
 - Type: `boolean`
 - Default: `undefined`
@@ -79,7 +79,7 @@ import { useExpoScaleEase } from '#gsap'
 const { $RoughEase } = useNuxtApp()
 ```
 
-### useRoughEase
+## useRoughEase
 
 - Custom composable
 
@@ -107,7 +107,7 @@ useRoughEase
 import { useRoughEase } from '#gsap'
 ```
 
-### SlowMo
+## SlowMo
 
 - Type: `boolean`
 - Default: `undefined`
@@ -130,7 +130,7 @@ import { useRoughEase } from '#gsap'
 const { $SlowMo } = useNuxtApp()
 ```
 
-### useSlowMo
+## useSlowMo
 
 - Custom composable
 
@@ -158,7 +158,7 @@ useSlowMo
 import { useSlowMo } from '#gsap'
 ```
 
-### Custom
+## Custom
 
 - Type: `boolean`
 - Default: `undefined`
@@ -181,7 +181,7 @@ import { useSlowMo } from '#gsap'
 const { $CustomEase } = useNuxtApp()
 ```
 
-### useCustomEase
+## useCustomEase
 
 - Custom composable
 

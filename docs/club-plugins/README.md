@@ -11,7 +11,7 @@ Keep in mind that premium plugins must be installed according to the official GS
 
 For more information about club plugins, check the official pages.
 
-### DrawSvg
+## DrawSvg
 
 - Type: `boolean`
 - Default: `undefined`
@@ -34,7 +34,7 @@ For more information about club plugins, check the official pages.
 const { $DrawSVGPlugin } = useNuxtApp()
 ```
 
-### useDrawSVGPlugin
+## useDrawSVGPlugin
 
 - Custom composable
 
@@ -62,7 +62,7 @@ useDrawSVGPlugin
 import { useDrawSVGPlugin } from '#gsap'
 ```
 
-### ScrollSmoother
+## ScrollSmoother
 
 - Type: `boolean`
 - Default: `undefined`
@@ -85,7 +85,7 @@ import { useDrawSVGPlugin } from '#gsap'
 const { $ScrollSmoother } = useNuxtApp()
 ```
 
-### useScrollSmoother
+## useScrollSmoother
 
 - Custom composable
 
@@ -113,7 +113,7 @@ useScrollSmoother
 import { useScrollSmoother } from '#gsap'
 ```
 
-### GsDevTools
+## GsDevTools
 
 - Type: `boolean`
 - Default: `undefined`
@@ -136,7 +136,7 @@ import { useScrollSmoother } from '#gsap'
 const { $GSDevTools } = useNuxtApp()
 ```
 
-### useGSDevTools
+## useGSDevTools
 
 - Custom composable
 
@@ -164,7 +164,7 @@ useGSDevTools
 import { useGSDevTools } from '#gsap'
 ```
 
-### Inertia
+## Inertia
 
 - Type: `boolean`
 - Default: `undefined`
@@ -187,7 +187,7 @@ import { useGSDevTools } from '#gsap'
 const { $InertiaPlugin } = useNuxtApp()
 ```
 
-### useInertiaPlugin
+## useInertiaPlugin
 
 - Custom composable
 
@@ -215,7 +215,7 @@ useInertiaPlugin
 import { useInertiaPlugin } from '#gsap'
 ```
 
-### MorphSvg
+## MorphSvg
 
 - Type: `boolean`
 - Default: `undefined`
@@ -238,7 +238,7 @@ import { useInertiaPlugin } from '#gsap'
 const { $MorphSVGPlugin } = useNuxtApp()
 ```
 
-### useMorphSVGPlugin
+## useMorphSVGPlugin
 
 - Custom composable
 
@@ -266,7 +266,7 @@ useMorphSVGPlugin
 import { useMorphSVGPlugin } from '#gsap'
 ```
 
-### MotionPathHelper
+## MotionPathHelper
 
 - Type: `boolean`
 - Default: `undefined`
@@ -289,7 +289,7 @@ import { useMorphSVGPlugin } from '#gsap'
 const { $MotionPathHelper } = useNuxtApp()
 ```
 
-### useMotionPathHelper
+## useMotionPathHelper
 
 - Custom composable
 
@@ -317,7 +317,7 @@ useMotionPathHelper
 import { useMotionPathHelper } from '#gsap'
 ```
 
-### Physics2d
+## Physics2d
 
 - Type: `boolean`
 - Default: `undefined`
@@ -340,7 +340,7 @@ import { useMotionPathHelper } from '#gsap'
 const { $Physics2DPlugin } = useNuxtApp()
 ```
 
-### usePhysics2DPlugin
+## usePhysics2DPlugin
 
 - Custom composable
 
@@ -368,7 +368,7 @@ usePhysics2DPlugin
 import { usePhysics2DPlugin } from '#gsap'
 ```
 
-### PhysicsProps
+## PhysicsProps
 
 - Type: `boolean`
 - Default: `undefined`
@@ -391,7 +391,7 @@ import { usePhysics2DPlugin } from '#gsap'
 const { $PhysicsPropsPlugin } = useNuxtApp()
 ```
 
-### usePhysicsPropsPlugin
+## usePhysicsPropsPlugin
 
 - Custom composable
 
@@ -419,7 +419,7 @@ usePhysicsPropsPlugin
 import { usePhysicsPropsPlugin } from '#gsap'
 ```
 
-### ScrambleText
+## ScrambleText
 
 - Type: `boolean`
 - Default: `undefined`
@@ -442,7 +442,7 @@ import { usePhysicsPropsPlugin } from '#gsap'
 const { $ScrambleText } = useNuxtApp()
 ```
 
-### useScrambleText
+## useScrambleText
 
 - Custom composable
 
@@ -470,7 +470,7 @@ useScrambleText
 import { useScrambleText } from '#gsap'
 ```
 
-### SplitText
+## SplitText
 
 - Type: `boolean`
 - Default: `undefined`
@@ -493,7 +493,7 @@ import { useScrambleText } from '#gsap'
 const { $SplitText } = useNuxtApp()
 ```
 
-### useSplitText
+## useSplitText
 
 - Custom composable
 
@@ -521,7 +521,7 @@ useSplitText
 import { useSplitText } from '#gsap'
 ```
 
-### CustomBounce
+## CustomBounce
 
 - Type: `boolean`
 - Default: `undefined`
@@ -544,7 +544,7 @@ import { useSplitText } from '#gsap'
 const { $CustomBounce } = useNuxtApp()
 ```
 
-### useCustomBounce
+## useCustomBounce
 
 - Custom composable
 
@@ -572,7 +572,7 @@ useCustomBounce
 import { useCustomBounce } from '#gsap'
 ```
 
-### CustomWiggle
+## CustomWiggle
 
 - Type: `boolean`
 - Default: `undefined`
@@ -595,7 +595,7 @@ import { useCustomBounce } from '#gsap'
 const { $CustomWiggle } = useNuxtApp()
 ```
 
-### useCustomWiggle
+## useCustomWiggle
 
 - Custom composable
 
