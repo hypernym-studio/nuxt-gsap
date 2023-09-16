@@ -821,6 +821,34 @@ Specifies GSAP extra eases.
 const { $ExpoScaleEase } = useNuxtApp()
 ```
 
+### useExpoScaleEase
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraEases: {
+      expoScale: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useExpoScaleEase
+```
+
+```ts
+// Explicit import (optional)
+import { useExpoScaleEase } from '#gsap'
+```
+
 ### Rough
 
 - Type: `boolean`
@@ -842,6 +870,34 @@ const { $ExpoScaleEase } = useNuxtApp()
 
 ```ts
 const { $RoughEase } = useNuxtApp()
+```
+
+### useRoughEase
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraEases: {
+      rough: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useRoughEase
+```
+
+```ts
+// Explicit import (optional)
+import { useRoughEase } from '#gsap'
 ```
 
 ### SlowMo
@@ -867,6 +923,34 @@ const { $RoughEase } = useNuxtApp()
 const { $SlowMo } = useNuxtApp()
 ```
 
+### useSlowMo
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraEases: {
+      slowMo: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useSlowMo
+```
+
+```ts
+// Explicit import (optional)
+import { useSlowMo } from '#gsap'
+```
+
 ### Custom
 
 - Type: `boolean`
@@ -888,6 +972,34 @@ const { $SlowMo } = useNuxtApp()
 
 ```ts
 const { $CustomEase } = useNuxtApp()
+```
+
+### useCustomEase
+
+- Custom composable
+
+```ts
+// nuxt.config.ts
+
+{
+  gsap: {
+    composables: true,
+    extraEases: {
+      custom: true
+    }
+  }
+}
+```
+
+**Usage**
+
+```ts
+useCustomEase
+```
+
+```ts
+// Explicit import (optional)
+import { useCustomEase } from '#gsap'
 ```
 
 ## Club Plugins
