@@ -1,1 +1,1 @@
-export { baseConfig as default } from 'configshare/prettier'
+export { default } from '@hypernym/prettier-config'

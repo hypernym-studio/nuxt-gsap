@@ -1,4 +1,4 @@
-import { jsConfig, tsConfig, ignores } from 'configshare/eslint'
+import { jsConfig, tsConfig, ignores } from '@hypernym/eslint-config'
 
 export default [
   jsConfig,
