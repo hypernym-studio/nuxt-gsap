@@ -1,12 +1,11 @@
 import { resolve } from 'node:path'
 import { writeFile } from 'node:fs/promises'
-import { cl, cyan, bold, darken } from 'colorate'
 import { configKey, compatibility } from '../meta.js'
 
 /**
  * Generates a `module.json` meta template.
  */
-export async function generateModuleMeta(name, version) {
+export async function generateModuleMeta(name: string, version: string) {
   const root = process.cwd()
 
   const meta = {
@@ -57,18 +56,4 @@ declare module 'nuxt/schema' {
 export { ModuleOptions, default } from './module'`
 
   return await writeFile(typesPath, typesTemplate)
-}
-
-/**
- * Prints templates info in the terminal.
- */
-export function logModuleTemplates() {
-  cl(
-    bold(cyan('ROLLI')),
-    `Nuxt module templates are generated in the ${cyan("'./dist'")} directory.`,
-  )
-  cl()
-  cl(cyan('> ') + `JSON`, darken('./dist/module.json'))
-  cl(cyan('> ') + `DTS `, darken('./dist/types.d.ts'))
-  cl()
 }
