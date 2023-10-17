@@ -1,14 +1,11 @@
+import { defineConfig } from '@hypernym/bundler'
 import { name, version } from './package.json'
-import {
-  generateModuleMeta,
-  generateModuleTypes,
-} from './src/utils/templates.js'
+import { generateNuxtTemplates } from './src/utils/templates.js'
 
-export default {
+export default defineConfig({
   entries: [
     {
       input: './src/module.ts',
-      output: './dist/module.mjs',
       externals: [/^@nuxt/],
       plugins: {
         replace: {
@@ -24,9 +21,8 @@ export default {
     },
   ],
   hooks: {
-    'build:done': async () => {
-      await generateModuleMeta(name, version)
-      await generateModuleTypes()
+    'build:end': async (options, buildStats) => {
+      await generateNuxtTemplates(buildStats)
     },
   },
-}
+})
