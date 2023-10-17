@@ -1,32 +1,32 @@
 import { resolve } from 'node:path'
-import { writeFile } from 'node:fs/promises'
+import { writeFile, stat } from 'node:fs/promises'
+import { name, version } from '../../package.json'
 import { configKey, compatibility } from '../meta.js'
+import type { BuildStats } from '@hypernym/bundler'
 
 /**
- * Generates a `module.json` meta template.
+ * Generates Nuxt templates:
+ *
+ * - `module.json` meta template
+ * - `shims` for `nuxt.config` auto-completion
  */
-export async function generateModuleMeta(name: string, version: string) {
-  const root = process.cwd()
+export async function generateNuxtTemplates(buildStats?: BuildStats) {
+  if (!buildStats) return
 
-  const meta = {
-    name,
-    version,
-    configKey,
-    compatibility,
-  }
+  const { cwd } = buildStats
+  const buildStart = Date.now()
+  let buildSize = 0
 
-  const metaPath = resolve(root, './dist/module.json')
-  const metaTemplate = JSON.stringify(meta, null, 2)
-
-  return await writeFile(metaPath, metaTemplate)
-}
-
-/**
- * Generates shims for `nuxt.config` auto-completion.
- */
-export async function generateModuleTypes() {
-  const root = process.cwd()
-  const typesPath = resolve(root, './dist/types.d.ts')
+  const metaContent = JSON.stringify(
+    {
+      name,
+      version,
+      configKey,
+      compatibility,
+    },
+    null,
+    2,
+  )
 
   const comment = `/**
      * Nuxt Gsap Module
@@ -36,7 +36,7 @@ export async function generateModuleTypes() {
      * @see [Repository](https://github.com/hypernym-studio/nuxt-gsap)
      */`
 
-  const typesTemplate = `import { ModuleOptions } from './module'
+  const typesContent = `import { ModuleOptions } from './module'
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {
@@ -55,5 +55,28 @@ declare module 'nuxt/schema' {
 
 export { ModuleOptions, default } from './module'`
 
-  return await writeFile(typesPath, typesTemplate)
+  const metaPath = './dist/module.json'
+  const typesPath = './dist/types.d.ts'
+
+  await writeFile(resolve(cwd, metaPath), metaContent, 'utf-8')
+  await writeFile(resolve(cwd, typesPath), typesContent, 'utf-8')
+
+  for (const file of [metaPath, typesPath]) {
+    const start = Date.now()
+    const stats = await stat(resolve(cwd, file))
+    const end = Date.now()
+    const time = end - start === 0 ? 1 : end - start
+
+    buildStats.files.push({
+      path: file,
+      size: stats.size,
+      buildTime: time,
+      format: file.endsWith('.d.ts') ? 'dts' : 'json',
+      logs: [],
+    })
+    buildSize = buildSize + stats.size
+  }
+
+  buildStats.buildTime = buildStats.buildTime + (Date.now() - buildStart)
+  buildStats.size = buildStats.size + buildSize
 }
