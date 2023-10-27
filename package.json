@@ -43,12 +43,12 @@
     "gsap": "^3.12.2"
   },
   "devDependencies": {
-    "@hypernym/bundler": "^0.3.1",
+    "@hypernym/bundler": "^0.6.1",
     "@hypernym/eslint-config": "^2.0.2",
     "@hypernym/prettier-config": "^2.0.2",
-    "@types/node": "^20.8.6",
-    "eslint": "^8.51.0",
-    "nuxt": "^3.7.4",
+    "@types/node": "^20.8.9",
+    "eslint": "^8.52.0",
+    "nuxt": "^3.8.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   }
