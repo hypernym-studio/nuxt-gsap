@@ -1,6 +1,6 @@
 import { defineConfig } from '@hypernym/bundler'
 import { name, version } from './package.json'
-import { generateNuxtTemplates } from './src/utils/templates.js'
+import { nuxtMetaTemplate, nuxtTypesTemplate } from './src/utils/templates.js'
 
 export default defineConfig({
   entries: [
@@ -19,10 +19,17 @@ export default defineConfig({
       types: './src/types/module.ts',
       output: './dist/module.d.ts',
     },
-  ],
-  hooks: {
-    'build:end': async (options, buildStats) => {
-      await generateNuxtTemplates(buildStats)
+    {
+      template: true,
+      output: './dist/module.json',
+      content: nuxtMetaTemplate(),
+      format: 'json',
     },
-  },
+    {
+      template: true,
+      output: './dist/types.d.ts',
+      content: nuxtTypesTemplate(),
+      format: 'dts',
+    },
+  ],
 })

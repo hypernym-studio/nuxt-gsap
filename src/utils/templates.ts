@@ -1,22 +1,10 @@
-import { resolve } from 'node:path'
-import { writeFile, stat } from 'node:fs/promises'
-import { name, version } from '../../package.json'
+import { name, description, version, homepage } from '../../package.json'
 import { configKey, compatibility } from '../meta.js'
-import type { BuildStats } from '@hypernym/bundler'
 
 /**
- * Generates Nuxt templates:
- *
- * - `module.json` meta template
- * - `shims` for `nuxt.config` auto-completion
+ * Generates `module.json` meta template.
  */
-export async function generateNuxtTemplates(buildStats?: BuildStats) {
-  if (!buildStats) return
-
-  const { cwd } = buildStats
-  const buildStart = Date.now()
-  let buildSize = 0
-
+export function nuxtMetaTemplate() {
   const metaContent = JSON.stringify(
     {
       name,
@@ -28,12 +16,19 @@ export async function generateNuxtTemplates(buildStats?: BuildStats) {
     2,
   )
 
+  return metaContent
+}
+
+/**
+ * Generates `shims` for `nuxt.config` auto-completion.
+ */
+export function nuxtTypesTemplate() {
   const comment = `/**
      * Nuxt Gsap Module
      *
-     * GSAP module for Nuxt.
+     * ${description}
      *
-     * @see [Repository](https://github.com/hypernym-studio/nuxt-gsap)
+     * @see [Repository](${homepage})
      */`
 
   const typesContent = `import { ModuleOptions } from './module'
@@ -55,28 +50,5 @@ declare module 'nuxt/schema' {
 
 export { ModuleOptions, default } from './module'`
 
-  const metaPath = './dist/module.json'
-  const typesPath = './dist/types.d.ts'
-
-  await writeFile(resolve(cwd, metaPath), metaContent, 'utf-8')
-  await writeFile(resolve(cwd, typesPath), typesContent, 'utf-8')
-
-  for (const file of [metaPath, typesPath]) {
-    const start = Date.now()
-    const stats = await stat(resolve(cwd, file))
-    const end = Date.now()
-    const time = end - start === 0 ? 1 : end - start
-
-    buildStats.files.push({
-      path: file,
-      size: stats.size,
-      buildTime: time,
-      format: file.endsWith('.d.ts') ? 'dts' : 'json',
-      logs: [],
-    })
-    buildSize = buildSize + stats.size
-  }
-
-  buildStats.buildTime = buildStats.buildTime + (Date.now() - buildStart)
-  buildStats.size = buildStats.size + buildSize
+  return typesContent
 }
