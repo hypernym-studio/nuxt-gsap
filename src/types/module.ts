@@ -1,5 +1,5 @@
 import type { NuxtModule } from '@nuxt/schema'
-import type { ExtraPlugins, ExtraEases, ClubPlugins } from './options/index.js'
+import type { ExtraPlugins, ExtraEases, ClubPlugins } from './options'
 
 export interface ModuleOptions {
   /**

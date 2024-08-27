@@ -1,5 +1,5 @@
 import { name, description, version, homepage } from '../../package.json'
-import { configKey, compatibility } from '../meta.js'
+import { configKey, compatibility } from '../meta'
 
 /**
  * Generates `module.json` meta template.
