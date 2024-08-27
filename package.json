@@ -34,22 +34,22 @@
     "build:play": "nuxt build playground",
     "generate:play": "nuxt generate playground",
     "preview:play": "nuxt preview playground",
-    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js .",
-    "lint:fix": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js --fix .",
+    "lint": "eslint -c .config/eslint.config.js .",
+    "lint:fix": "eslint -c .config/eslint.config.js --fix .",
     "format": "prettier --config .config/prettier.config.js --write .",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "gsap": "^3.12.2"
+    "gsap": "^3.12.5"
   },
   "devDependencies": {
-    "@hypernym/bundler": "^0.6.1",
-    "@hypernym/eslint-config": "^2.0.2",
-    "@hypernym/prettier-config": "^2.0.2",
-    "@types/node": "^20.8.9",
-    "eslint": "^8.52.0",
-    "nuxt": "^3.8.0",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "@hypernym/bundler": "^0.9.3",
+    "@hypernym/eslint-config": "^3.0.2",
+    "@hypernym/prettier-config": "^3.0.1",
+    "@types/node": "^22.5.0",
+    "eslint": "^9.9.1",
+    "nuxt": "^3.13.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
   }
 }
